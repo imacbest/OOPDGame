@@ -135,7 +135,7 @@ public class GameObject {
 					sprite.getCurrentFrameRectangle(), position, null);
 		}
 	}
-    
+
 	
 	/**
 	 * Override this method to draw your own text, rectangle and
