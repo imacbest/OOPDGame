@@ -51,8 +51,12 @@ public class ToadParcour extends GameEngine {
         createTileEnvironment();
 
 
+
         toad = new Toad(this);
         addGameObject(toad, 160, 2110);
+
+        monsters.add(new Turtle(toad));
+        addGameObject(monsters.get(0), 160, 2110);
 
 //        for(int i = 0; i < 1; i++){
 //            monsters.add(new Monster(vis));

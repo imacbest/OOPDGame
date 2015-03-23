@@ -38,7 +38,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
      */
     public Toad(ToadParcour mygame) {
         this.mygame = mygame;
-        setSprite("toad", 4); // change fishframe to toad frams !!
+        setSprite("toad", 4); // img of the character
         setFriction(1);
 
         setSpeed(0);
@@ -54,7 +54,6 @@ public class Toad extends GravatiyGameObject implements ICollision {
     @Override
     public void update(){
         super.update();
-
         super.gravity();
 
         // collisions with objects
@@ -73,8 +72,11 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
 
         if (OnScreenButtons.dPadUp || (MotionSensor.tiltUp && !buttonPressed)) {
-            setDirectionSpeed(0, 8);
-            //setFrameNumber(1);
+            if(super.isTileOnderSpeler()) {
+                setDirectionSpeed(0, 8);
+                setFrameNumber(1);
+            }
+
         }
         if (OnScreenButtons.dPadDown
                 || (MotionSensor.tiltDown && !buttonPressed)){
@@ -98,10 +100,8 @@ public class Toad extends GravatiyGameObject implements ICollision {
         // Do we know for certain that the for-each loop goes through the list
         // front to end?
         // If not, we have to use a different iterator!
-        for (TileCollision tc : collidedTiles)
-        {
-            if (tc.theTile.getTileType() == 0)
-            {
+        for (TileCollision tc : collidedTiles){
+            if (tc.theTile.getTileType() == 0){
                 moveUpToTileSide(tc);
                 setSpeed(0);
                 break;

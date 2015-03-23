@@ -3,6 +3,7 @@ package nl.han.oopd.toadparcour;
 import android.gameengine.icadroids.objects.MoveableGameObject;
 import android.gameengine.icadroids.objects.collisions.ICollision;
 import android.gameengine.icadroids.objects.collisions.TileCollision;
+import android.location.Location;
 
 import java.util.List;
 
@@ -10,8 +11,8 @@ import java.util.List;
  * Monster
  */
 public abstract class Monster extends GravatiyGameObject implements IScore, ICollision{
-    private int timeCounter;
-    private MoveableGameObject target;
+    protected int timeCounter;
+    protected MoveableGameObject target;
 
     private int moveSpeed;
     private int range;
@@ -22,6 +23,10 @@ public abstract class Monster extends GravatiyGameObject implements IScore, ICol
     }
 
     public boolean isInRange(){
+        int distance = (int)Math.sqrt((this.getX()-target.getX())*(this.getX()-target.getX()) + (this.getY()-target.getY())*(this.getY()-target.getY()));
+        if(distance <= range){
+            return true;
+        }
         return false;
     }
 

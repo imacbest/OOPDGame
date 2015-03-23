@@ -23,7 +23,7 @@ public class GravatiyGameObject extends MoveableGameObject {
      * Checkt if there is a tile underneath the player
      * @return boolean
      */
-    private boolean isTileOnderSpeler(){
+    public boolean isTileOnderSpeler(){
         return getTileOnPosition(getX(), getY()+getFrameHeight())!=null;
     }
 }
