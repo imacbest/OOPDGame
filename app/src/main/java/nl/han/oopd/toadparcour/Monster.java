@@ -42,6 +42,11 @@ public abstract class Monster extends GravatiyGameObject implements IScore, ICol
                 setSpeed(0);
             }
         }
+        if(getDirection() <= 180){
+            setFrameNumber(1);
+        }else{
+            setFrameNumber(0);
+        }
     };
 
     public abstract void die();
