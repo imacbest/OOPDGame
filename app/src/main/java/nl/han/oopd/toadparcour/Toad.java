@@ -1,6 +1,7 @@
 package nl.han.oopd.toadparcour;
 
 import android.gameengine.icadroids.input.MotionSensor;
+import android.gameengine.icadroids.input.OnScreenButton;
 import android.gameengine.icadroids.input.OnScreenButtons;
 import android.gameengine.icadroids.objects.GameObject;
 import android.gameengine.icadroids.objects.collisions.ICollision;
@@ -67,14 +68,27 @@ public class Toad extends GravatiyGameObject implements ICollision {
         // Buttons take precedence.
         boolean buttonPressed = false;
         if (OnScreenButtons.dPadUp || OnScreenButtons.dPadDown
-                || OnScreenButtons.dPadLeft || OnScreenButtons.dPadRight) {
+                || OnScreenButtons.dPadLeft || OnScreenButtons.dPadRight
+                || OnScreenButtons.buttonA) {
             buttonPressed = true;
+        } else if(super.isTileOnderSpeler()){
+            buttonPressed = false;
+            setDirectionSpeed(0, 0);
         }
 
         if (OnScreenButtons.buttonA || (MotionSensor.tiltUp && !buttonPressed)) {
-            if(super.isTileOnderSpeler()) {
-                setDirectionSpeed(0, 8);
-                setFrameNumber(1);
+            if (OnScreenButtons.dPadRight
+                    || (MotionSensor.tiltRight && !buttonPressed)){
+                setDirectionSpeed(145, 150);
+                setFrameNumber(0);
+            }
+            else if (OnScreenButtons.dPadLeft
+                    || (MotionSensor.tiltLeft && !buttonPressed)){
+                setDirectionSpeed(325, 150);
+                setFrameNumber(0);
+            }
+            else if(super.isTileOnderSpeler()) {
+                setDirectionSpeed(0, 250);
             }
 
         }
