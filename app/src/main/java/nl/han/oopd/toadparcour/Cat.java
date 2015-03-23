@@ -12,7 +12,7 @@ public class Cat extends Monster {
      * @param target the MoveableGameObject to be chased
      */
     public Cat(MoveableGameObject target) {
-        super(target, 50);
+        super(target, 50, 8);
     }
 
     @Override
