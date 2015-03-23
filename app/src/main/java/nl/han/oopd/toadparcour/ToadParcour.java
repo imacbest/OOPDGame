@@ -14,6 +14,8 @@ import android.util.TypedValue;
 
 import java.util.ArrayList;
 
+import static nl.han.oopd.toadparcour.Constands.*;
+
 /**
  * The main charactar of the game
  * @author Thomas & Max
@@ -24,6 +26,7 @@ public class ToadParcour extends GameEngine {
      * MoveableGmeObject vis, player in the game
      */
     private Toad toad;
+
 
     /**
      * Dashboard for displaying the score
