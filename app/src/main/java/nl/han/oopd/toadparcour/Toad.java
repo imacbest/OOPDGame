@@ -33,7 +33,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
      */
     public Toad(ToadParcour mygame) {
         this.mygame = mygame;
-        setSprite("toad", 4); // change fishframe to toad frams !!
+        setSprite("toad", 4); // img of the character
         setFriction(1);
 
         setSpeed(0);
@@ -68,8 +68,10 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
 
         if (OnScreenButtons.dPadUp || (MotionSensor.tiltUp && !buttonPressed)) {
-            setDirectionSpeed(0, 8);
-            setFrameNumber(1);
+            if(super.isTileOnderSpeler()) {
+                setDirectionSpeed(0, 8);
+                setFrameNumber(1);
+            }
         }
         if (OnScreenButtons.dPadDown
                 || (MotionSensor.tiltDown && !buttonPressed)){
