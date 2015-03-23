@@ -82,7 +82,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
 
 
-        if (OnScreenButtons.buttonA || (MotionSensor.tiltUp && !buttonPressed)) {
+        if (OnScreenButtons.buttonA) {
             if(super.isTileOnderSpeler()) {
                 jump = true;
                 start = this.getY();
@@ -112,7 +112,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 if (super.isTileOnderSpeler()) {
                     jump = true;
                     start = this.getY();
-                    jumping(45);
+                    jumping(0);
                     //graden = 45;
                 }
             }
