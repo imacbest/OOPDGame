@@ -39,7 +39,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
      */
     private boolean jump = false;
     private int start = 0;
-    private int graden = 0;
+    //private int graden = 0;
 
 
     public Toad(ToadParcour mygame) {
@@ -86,16 +86,12 @@ public class Toad extends GravatiyGameObject implements ICollision {
             if(super.isTileOnderSpeler()) {
                 jump = true;
                 start = this.getY();
+                jumping(0);
             }
 
         }
-        if(jump) {
-            setDirectionSpeed(graden, 15);
-        }
-        if(jump && this.getY() <= (start - 200)){
-            jump = false;
-            setDirectionSpeed(0,0);
-        }
+
+
 
 
 
@@ -116,7 +112,8 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 if (super.isTileOnderSpeler()) {
                     jump = true;
                     start = this.getY();
-                    graden = 45;
+                    jumping(45);
+                    //graden = 45;
                 }
             }
         }
@@ -130,7 +127,8 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 if (super.isTileOnderSpeler()) {
                     jump = true;
                     start = this.getY();
-                    graden = 315;
+                    jumping(315);
+                    //graden = 315;
                 }
             }
         }
@@ -173,4 +171,16 @@ public class Toad extends GravatiyGameObject implements ICollision {
             this.bananas += bananas;
         }
     }
+
+    private void jumping(int graden) {
+        if (jump) {
+            setDirectionSpeed(graden, 15);
+        }
+        if (jump && this.getY() <= (start - 200)) {
+            jump = false;
+            setDirectionSpeed(0, 0);
+        }
+    }
+
+
 }
