@@ -37,6 +37,11 @@ public class Toad extends GravatiyGameObject implements ICollision {
      * The main character of the game
      * @author Thomas & Max
      */
+    private boolean jump = false;
+    private int start = 0;
+    private int graden = 0;
+
+
     public Toad(ToadParcour mygame) {
         this.mygame = mygame;
         setSprite("toad", 4); // img of the character
@@ -76,12 +81,26 @@ public class Toad extends GravatiyGameObject implements ICollision {
             setDirectionSpeed(0, 0);
         }
 
+
         if (OnScreenButtons.buttonA || (MotionSensor.tiltUp && !buttonPressed)) {
             if(super.isTileOnderSpeler()) {
-                setDirectionSpeed(0, 250);
+                jump = true;
+                start = this.getY();
             }
 
         }
+        if(jump) {
+            setDirectionSpeed(graden, 15);
+        }
+        if(jump && this.getY() <= (start - 200)){
+            jump = false;
+            setDirectionSpeed(0,0);
+        }
+
+
+
+
+
         if (OnScreenButtons.dPadDown
                 || (MotionSensor.tiltDown && !buttonPressed)){
             //setDirectionSpeed(180, 8);
@@ -89,20 +108,30 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
         if (OnScreenButtons.dPadRight
                 || (MotionSensor.tiltRight && !buttonPressed)){
-            setDirectionSpeed(90, 8);
-            setFrameNumber(0);
-            if(super.isTileOnderSpeler() && OnScreenButtons.buttonA|| (MotionSensor.tiltUp)) {
-                for(int i = 0; i<100; i++) {
-                    setDirectionSpeed(45, i);
+            if(super.isTileOnderSpeler()) {
+                setDirectionSpeed(90, 8);
+                setFrameNumber(0);
+            }
+            if (OnScreenButtons.buttonA || (MotionSensor.tiltUp && !buttonPressed)) {
+                if (super.isTileOnderSpeler()) {
+                    jump = true;
+                    start = this.getY();
+                    graden = 45;
                 }
             }
         }
         if (OnScreenButtons.dPadLeft
                 || (MotionSensor.tiltLeft && !buttonPressed)){
-            setDirectionSpeed(270, 8);
-            setFrameNumber(2);
-            if(super.isTileOnderSpeler() && OnScreenButtons.buttonA|| (MotionSensor.tiltUp)) {
-                setDirectionSpeed(315, 50);
+            if(super.isTileOnderSpeler()) {
+                setDirectionSpeed(270, 8);
+                setFrameNumber(2);
+            }
+            if (OnScreenButtons.buttonA || (MotionSensor.tiltUp && !buttonPressed)) {
+                if (super.isTileOnderSpeler()) {
+                    jump = true;
+                    start = this.getY();
+                    graden = 315;
+                }
             }
         }
     }
