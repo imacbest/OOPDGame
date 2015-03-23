@@ -23,6 +23,11 @@ public class Toad extends GravatiyGameObject implements ICollision {
     private int bananas = 0;
 
     /**
+     * Number of coins that toad have collected
+     */
+    private int coins = 0;
+
+    /**
      * The score of the main character
      */
     private int score;
@@ -69,7 +74,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
         if (OnScreenButtons.dPadUp || (MotionSensor.tiltUp && !buttonPressed)) {
             setDirectionSpeed(0, 8);
-            setFrameNumber(1);
+            //setFrameNumber(1);
         }
         if (OnScreenButtons.dPadDown
                 || (MotionSensor.tiltDown && !buttonPressed)){
@@ -101,6 +106,30 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 setSpeed(0);
                 break;
             }
+        }
+    }
+
+    public int getCoins() {
+        return coins;
+    }
+
+    public int getBananas() {
+        return bananas;
+    }
+
+    public void setCoins(int coins) {
+        this.coins = coins;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void setBananas(int bananas) {
+        if (this.bananas + bananas <= 0) {
+            this.bananas = 0;
+        } else {
+            this.bananas += bananas;
         }
     }
 }
