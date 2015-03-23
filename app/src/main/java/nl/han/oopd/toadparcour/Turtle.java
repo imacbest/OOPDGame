@@ -14,7 +14,7 @@ public class Turtle extends Monster {
      */
     public Turtle(MoveableGameObject target) {
         super(target);
-        setSprite("toad");
+        setSprite("alien");
         this.timeCounter = 0;
     }
 
