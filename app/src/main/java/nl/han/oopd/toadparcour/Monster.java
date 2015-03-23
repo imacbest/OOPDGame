@@ -12,7 +12,7 @@ import java.util.List;
  * 
  * @author Paul Bergervoet
  */
-public class Monster extends MoveableGameObject implements ICollision {
+public class Monster extends GravatiyGameObject implements ICollision, IScore {
     
     /**
      * counts time (that is calls on update()). Using the counter, we can create
