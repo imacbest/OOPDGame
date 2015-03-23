@@ -6,6 +6,7 @@ import android.gameengine.icadroids.objects.MoveableGameObject;
  * Created by maxgroenendijk on 23-03-15.
  */
 public class Turtle extends Monster {
+
     /**
      * Create a Monster
      *
@@ -13,10 +14,23 @@ public class Turtle extends Monster {
      */
     public Turtle(MoveableGameObject target) {
         super(target);
+        setSprite("toad");
+        this.timeCounter = 0;
     }
 
     @Override
+    public void update(){
+        super.update();
+        this.move();
+    }
+    @Override
     public void move() {
+        timeCounter++;
+        if (timeCounter % 4 == 0) {
+            if(isInRange()) {
+                this.moveTowardsAPoint(super.target.getCenterX(), super.target.getCenterY());
+            }
+        }
     }
 
     @Override

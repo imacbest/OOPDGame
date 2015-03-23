@@ -49,9 +49,9 @@ public class Monster extends MoveableGameObject implements ICollision {
 	super.update();
 
 	timeCounter++;
-	if (timeCounter % 4 == 0) {
-	    this.moveTowardsAPoint(target.getCenterX(), target.getCenterY());
-	}
+        if (timeCounter % 4 == 0) {
+            this.moveTowardsAPoint(target.getCenterX(), target.getCenterY());
+        }
     }
 
     /**
