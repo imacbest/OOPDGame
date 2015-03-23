@@ -14,7 +14,7 @@ public class GravatiyGameObject extends MoveableGameObject {
      */
     protected void gravity(){
         if(!isTileOnderSpeler()){
-            setDirectionSpeed(-180, 4.8);
+            setDirectionSpeed(-180, 6.5);
         }
 
     }
