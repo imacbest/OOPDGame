@@ -73,15 +73,10 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
 
         if (OnScreenButtons.dPadUp || (MotionSensor.tiltUp && !buttonPressed)) {
-<<<<<<< HEAD
             if(super.isTileOnderSpeler()) {
                 setDirectionSpeed(0, 8);
                 setFrameNumber(1);
             }
-=======
-            setDirectionSpeed(0, 8);
-            //setFrameNumber(1);
->>>>>>> 16ed053a33377eaf8f43b993ef99f0c02b473717
         }
         if (OnScreenButtons.dPadDown
                 || (MotionSensor.tiltDown && !buttonPressed)){
