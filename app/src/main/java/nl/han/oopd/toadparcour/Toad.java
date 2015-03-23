@@ -99,7 +99,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
             {
                 moveUpToTileSide(tc);
                 setSpeed(0);
-                break; // might be considered ugly by some colleagues...
+                break;
             }
         }
     }
