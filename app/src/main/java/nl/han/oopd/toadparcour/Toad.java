@@ -67,43 +67,25 @@ public class Toad extends GravatiyGameObject implements ICollision {
             buttonPressed = true;
         }
 
-        if (OnScreenButtons.dPadUp || (MotionSensor.tiltUp && !buttonPressed))
-        {
+        if (OnScreenButtons.dPadUp || (MotionSensor.tiltUp && !buttonPressed)) {
             setDirectionSpeed(0, 8);
             setFrameNumber(1);
         }
         if (OnScreenButtons.dPadDown
-                || (MotionSensor.tiltDown && !buttonPressed))
-        {
-            setDirectionSpeed(180, 8);
-            setFrameNumber(3);
+                || (MotionSensor.tiltDown && !buttonPressed)){
+            //setDirectionSpeed(180, 8);
+            //setFrameNumber(3);
         }
         if (OnScreenButtons.dPadRight
-                || (MotionSensor.tiltRight && !buttonPressed))
-        {
+                || (MotionSensor.tiltRight && !buttonPressed)){
             setDirectionSpeed(90, 8);
             setFrameNumber(0);
         }
         if (OnScreenButtons.dPadLeft
-                || (MotionSensor.tiltLeft && !buttonPressed))
-        {
+                || (MotionSensor.tiltLeft && !buttonPressed)){
             setDirectionSpeed(270, 8);
             setFrameNumber(2);
         }
-
-        // Example of how to use the touch screen: Vis swims towards touch location.
-        // To use this, comment out the input from OnScreenButtons and MotionSensor
-        // and switch the use-settings in class Vissenkom2
-/*
-		 	// get readings from the TouchInput
-		 	float targetX = TouchInput.xPos;
-		 	float targetY = TouchInput.xPos;
-		 	// When using the viewport, translate screen locations to game world
-		 	Point p = mygame.translateToGamePosition(targetX, targetY);
-		 	// Move in the direction of the point that has been touched
-			setSpeed(8);
-		 	moveTowardsAPoint(p.x, p.y);
-*/
     }
 
     @Override
