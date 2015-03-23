@@ -14,4 +14,13 @@ public class Cat extends Monster {
     public Cat(MoveableGameObject target) {
         super(target);
     }
+
+    @Override
+    public void move() {
+    }
+
+    @Override
+    public void die() {
+
+    }
 }

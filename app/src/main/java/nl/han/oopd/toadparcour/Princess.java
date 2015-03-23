@@ -14,4 +14,13 @@ public class Princess extends Monster {
     public Princess(MoveableGameObject target) {
         super(target);
     }
+
+    @Override
+    public void move() {
+    }
+
+    @Override
+    public void die() {
+
+    }
 }

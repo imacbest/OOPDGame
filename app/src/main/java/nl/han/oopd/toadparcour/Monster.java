@@ -7,60 +7,46 @@ import android.gameengine.icadroids.objects.collisions.TileCollision;
 import java.util.List;
 
 /**
- * Monster is a MoveableGameObject that can chase any other MoveableGameObject
- * In 'Vissenkom2', it will chase 'Vis'.
- * 
- * @author Paul Bergervoet
+ * Monster
  */
-public class Monster extends GravatiyGameObject implements ICollision, IScore {
-    
-    /**
-     * counts time (that is calls on update()). Using the counter, we can create
-     * behaviour at certain updates only, instead of always.
-     */
+public abstract class Monster extends GravatiyGameObject implements IScore, ICollision{
     private int timeCounter;
-    
-    /**
-     * The MoveableGameObject to be chased
-     */
     private MoveableGameObject target;
 
-    /**
-     * Create a Monster
-     * 
-     * @param target 
-     * 		the MoveableGameObject to be chased
-     */
-    public Monster(MoveableGameObject target) {
-	this.target = target;
-	setSprite("alien");
-	this.timeCounter = 0;
-	setDirectionSpeed(225, 4);
+    private int moveSpeed;
+    private int range;
+
+
+    public Monster(MoveableGameObject target){
+        this.target = target;
     }
 
-    /**
-     * update: change direction to target every 4th step only.
-     * 
-     * @see android.gameengine.icadroids.objects.MoveableGameObject#update()
-     */
+    public boolean isInRange(){
+        return false;
+    }
+
+    public abstract void move();
+
+    public abstract void die();
+
     @Override
-    public void update() {
-	super.update();
-
-	timeCounter++;
-	if (timeCounter % 4 == 0) {
-	    this.moveTowardsAPoint(target.getCenterX(), target.getCenterY());
-	}
+    public void  update(){
+        super.update();
     }
+
+
+
 
     /**
      * Tile collision: monster bounces off all tiles, so use first collision
-     * 
+     *
      * @see android.gameengine.icadroids.objects.collisions.ICollision#collisionOccurred(java.util.List)
      */
     @Override
     public void collisionOccurred(List<TileCollision> collidedTiles) {
-	   bounce(collidedTiles.get(0));
+        bounce(collidedTiles.get(0));
     }
+
+
 
 }

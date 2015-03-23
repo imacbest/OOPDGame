@@ -14,4 +14,13 @@ public class Turtle extends Monster {
     public Turtle(MoveableGameObject target) {
         super(target);
     }
+
+    @Override
+    public void move() {
+    }
+
+    @Override
+    public void die() {
+
+    }
 }
