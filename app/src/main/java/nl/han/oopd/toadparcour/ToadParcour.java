@@ -100,7 +100,7 @@ public class ToadParcour extends GameEngine {
      * Create background with tiles
      */
     private void createTileEnvironment() {
-        String[] tileImagesNames = { "vissentile1", "vissentile2","vissentile1", "vissentile2","vissentile1","vissentile1", "vissentile2"};
+        String[] tileImagesNames = { "grey", "lava","vissentile1", "wooddoor","vissentile1","house", "red"};
         // layout: better not let the Eclipse formatter get at this...
         int[][] tilemap =
                 { {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
