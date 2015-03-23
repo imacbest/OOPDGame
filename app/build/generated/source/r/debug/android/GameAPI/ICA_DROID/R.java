@@ -50,11 +50,12 @@ public final class R {
         public static final int tile6=0x7f020024;
         public static final int toad=0x7f020025;
         public static final int tonk=0x7f020026;
-        public static final int uphill=0x7f020027;
-        public static final int vissentile1=0x7f020028;
-        public static final int vissentile2=0x7f020029;
-        public static final int wood=0x7f02002a;
-        public static final int wooddoor=0x7f02002b;
+        public static final int turtle=0x7f020027;
+        public static final int uphill=0x7f020028;
+        public static final int vissentile1=0x7f020029;
+        public static final int vissentile2=0x7f02002a;
+        public static final int wood=0x7f02002b;
+        public static final int wooddoor=0x7f02002c;
     }
     public static final class id {
         public static final int FPSButton=0x7f060008;

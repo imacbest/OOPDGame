@@ -5,6 +5,7 @@ import android.util.Log;
 
 /**
  * Created by maxgroenendijk on 23-03-15.
+ * @author Thomas & Max
  */
 public class Turtle extends Monster {
 
@@ -15,7 +16,7 @@ public class Turtle extends Monster {
      */
     public Turtle(MoveableGameObject target, int range, int speed) {
         super(target, range, speed);
-        setSprite("alien");
+        setSprite("turtle", 2);
         this.timeCounter = 0;
     }
 
