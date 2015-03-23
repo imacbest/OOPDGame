@@ -30,7 +30,7 @@ ADDED from AndroidManifest.xml:10:5
 		ADDED from AndroidManifest.xml:12:42
 	android:icon
 		ADDED from AndroidManifest.xml:11:9
-activity#nl.han.oopd.toadparcour.Vissenkom
+activity#nl.han.oopd.toadparcour.ToadParcour
 ADDED from AndroidManifest.xml:13:9
 	android:label
 		ADDED from AndroidManifest.xml:14:13
