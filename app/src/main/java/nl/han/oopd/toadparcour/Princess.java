@@ -12,7 +12,7 @@ public class Princess extends Monster {
      * @param target the MoveableGameObject to be chased
      */
     public Princess(MoveableGameObject target) {
-        super(target);
+        super(target, 50);
     }
 
     @Override

@@ -13,7 +13,7 @@ public class Turtle extends Monster {
      * @param target the MoveableGameObject to be chased
      */
     public Turtle(MoveableGameObject target) {
-        super(target);
+        super(target, 500);
         setSprite("alien");
         this.timeCounter = 0;
     }
@@ -35,6 +35,6 @@ public class Turtle extends Monster {
 
     @Override
     public void die() {
-
+        deleteThisGameObject();
     }
 }
