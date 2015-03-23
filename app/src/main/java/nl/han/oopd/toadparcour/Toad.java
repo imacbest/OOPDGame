@@ -39,7 +39,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
      */
     private boolean jump = false;
     private int start = 0;
-    //private int graden = 0;
+    private int hoek = 0;
 
 
     public Toad(ToadParcour mygame) {
@@ -82,20 +82,14 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
 
 
-        if (OnScreenButtons.buttonA) {
+        if (OnScreenButtons.buttonA || (MotionSensor.tiltUp && !buttonPressed)) {
             if(super.isTileOnderSpeler()) {
+                hoek = 0;
                 jump = true;
                 start = this.getY();
-                jumping(0);
             }
 
         }
-
-
-
-
-
-
 
         if (OnScreenButtons.dPadDown
                 || (MotionSensor.tiltDown && !buttonPressed)){
@@ -108,12 +102,11 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 setDirectionSpeed(90, 8);
                 setFrameNumber(0);
             }
-            if (OnScreenButtons.buttonA || (MotionSensor.tiltUp && !buttonPressed)) {
+            if (OnScreenButtons.buttonA ) { //|| (MotionSensor.tiltUp && !buttonPressed)
                 if (super.isTileOnderSpeler()) {
                     jump = true;
                     start = this.getY();
-                    jumping(0);
-                    //graden = 45;
+                    hoek = 25;
                 }
             }
         }
@@ -123,14 +116,30 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 setDirectionSpeed(270, 8);
                 setFrameNumber(2);
             }
-            if (OnScreenButtons.buttonA || (MotionSensor.tiltUp && !buttonPressed)) {
+            if (OnScreenButtons.buttonA ) { //|| (MotionSensor.tiltUp && !buttonPressed)
                 if (super.isTileOnderSpeler()) {
                     jump = true;
                     start = this.getY();
-                    jumping(315);
-                    //graden = 315;
+                    hoek = 335;
                 }
             }
+        }
+
+        if(jump) {
+            setDirectionSpeed(0, 15);
+            int speed = 25;
+            for(int i = 0 ; i < 20 ; i++) {
+                if(start - this.getY() >= (i * 10)) {
+                    speed--;
+                    setDirectionSpeed(hoek, speed);
+                }
+                if(start - this.getY() >= 250) {
+                    jump = false;
+                    gravity();
+                }
+
+            }
+            //jump = false;
         }
     }
 
@@ -172,15 +181,6 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
     }
 
-    private void jumping(int graden) {
-        if (jump) {
-            setDirectionSpeed(graden, 15);
-        }
-        if (jump && this.getY() <= (start - 200)) {
-            jump = false;
-            setDirectionSpeed(0, 0);
-        }
-    }
 
 
 }
