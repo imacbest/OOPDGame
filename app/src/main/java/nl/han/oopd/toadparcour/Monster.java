@@ -14,13 +14,14 @@ public abstract class Monster extends GravatiyGameObject implements IScore, ICol
     protected int timeCounter;
     protected MoveableGameObject target;
 
-    private int moveSpeed;
+    protected int moveSpeed;
     private int range;
 
 
-    public Monster(MoveableGameObject target, int range){
+    public Monster(MoveableGameObject target, int range, int speed){
         this.target = target;
         this.range = range;
+        this.moveSpeed = speed;
     }
 
     public boolean isInRange(){
@@ -31,7 +32,17 @@ public abstract class Monster extends GravatiyGameObject implements IScore, ICol
         return false;
     }
 
-    public abstract void move();
+    public void move(){
+        timeCounter++;
+        if (timeCounter % 4 == 0) {
+            if(isInRange()) {
+                setSpeed(moveSpeed);
+                this.moveTowardsAPoint(target.getCenterX(), target.getCenterY());
+            }else{
+                setSpeed(0);
+            }
+        }
+    };
 
     public abstract void die();
 
