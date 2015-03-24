@@ -57,8 +57,13 @@ public class ToadParcour extends GameEngine {
         monsters.add(new Turtle(toad, 200, 4));
         addGameObject(monsters.get(0), 160, 2010);
 
-        coins.add(new Coin());
-        addGameObject(coins.get(0),250, 2100);
+        loadCoins();
+//        coins.add(new Coin());
+//        coins.add(new Coin());
+//        coins.add(new Coin());
+//        addGameObject(coins.get(0),250, 2100);
+//        addGameObject(coins.get(1),344, 2128);
+//        addGameObject(coins.get(2),392, 2128);
 
 //        for(int i = 0; i < 1; i++){
 //            monsters.add(new Monster(vis));
@@ -83,6 +88,21 @@ public class ToadParcour extends GameEngine {
 //        addToDashboard(imageDisplay);
 
         createDashboard();
+    }
+
+    private void loadCoins() {
+        int[][] coinArray = new int[][]{
+                {250, 2100},
+                {344, 2128},
+                {392, 2128},
+                {440, 2128}
+        };
+
+        for(int i = 0; i < coinArray.length; i++) {
+            coins.add(new Coin());
+            addGameObject(coins.get(i), coinArray[i][0], coinArray[i][1]);
+            Log.d("Game", "Coins created!");
+        }
     }
 
 
@@ -132,7 +152,7 @@ public class ToadParcour extends GameEngine {
 
         GameTiles myTiles = new GameTiles(tileImagesNames, tilemap, 64);
         setTileMap(myTiles);
-        Log.d("Vissenkom2", "GameTiles created");
+        Log.d("Game", "GameTiles created");
 
     }
 
