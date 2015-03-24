@@ -250,7 +250,11 @@ public class Toad extends GravatiyGameObject implements ICollision {
     }
 
     public void setCoins(int coins) {
-        this.coins = coins;
+        if(coins < 0){
+            this.coins = 0;
+        }else{
+            this.coins = coins;
+        }
     }
 
     public void setScore(int score) {
