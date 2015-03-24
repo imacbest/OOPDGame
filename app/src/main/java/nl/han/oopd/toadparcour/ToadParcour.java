@@ -45,6 +45,7 @@ public class ToadParcour extends GameEngine {
      */
     @Override
     protected void initialize() {
+
         setMapDimensions(8705, 2240 );
 
         // Set up control mechanisms to use
@@ -193,6 +194,7 @@ public class ToadParcour extends GameEngine {
     private void createViewPort(Toad player, float zoom){
         // Switch it on
         Viewport.useViewport = true;
+        setBackground("cloudbackground", true);
         // Zoom in, 2x
         setZoomFactor(zoom);
         // Make viewport follow the Vis

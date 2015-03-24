@@ -64,24 +64,9 @@ public class Toad extends GravatiyGameObject implements ICollision {
     public void update() {
         super.update();
         super.gravity(kracht);
+        handleCollisions();
 
-
-        // collisions with objects
-        ArrayList<GameObject> gebotst = getCollidedObjects();
-        if (gebotst != null) {
-            for (GameObject g : gebotst) {
-                if(g instanceof Coin){
-                    Coin coin = (Coin) g;
-                    this.setCoins((this.getCoins()+1));
-                    coin.remove();
-                }
-                if(g instanceof Banana){
-                    Banana banana = (Banana) g;
-                    addBannana();
-                    banana.remove();
-                }
-            }
-        }
+        
         // Handle input. Both on screen buttons and tilting are supported.
         // Buttons take precedence.
         boolean buttonPressed = false;
@@ -148,6 +133,25 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
 
 
+    }
+
+    private void handleCollisions() {
+        // collisions with objects
+        ArrayList<GameObject> gebotst = getCollidedObjects();
+        if (gebotst != null) {
+            for (GameObject g : gebotst) {
+                if(g instanceof Coin){
+                    Coin coin = (Coin) g;
+                    this.setCoins((this.getCoins()+1));
+                    coin.remove();
+                }
+                if(g instanceof Banana){
+                    Banana banana = (Banana) g;
+                    addBannana();
+                    banana.remove();
+                }
+            }
+        }
     }
 
     private void addBannana() {
