@@ -12,9 +12,9 @@ public class GravatiyGameObject extends MoveableGameObject {
      * Handles the gravity in the game
      *
      */
-    protected void gravity(int graden){
+    protected void gravity(double kracht){
         if(!isTileOnderSpeler()){
-            setDirectionSpeed(graden, 6.5);
+            setDirectionSpeed(180, kracht);
         }
 
     }
