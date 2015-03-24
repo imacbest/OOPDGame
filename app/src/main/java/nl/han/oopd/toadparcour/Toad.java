@@ -41,7 +41,10 @@ public class Toad extends GravatiyGameObject implements ICollision {
     private int start = 0;
     private int hoek = 0;
 
-
+    /**
+     * Main toad function
+     * @param mygame verwijzing naar hoofdclass
+     */
     public Toad(ToadParcour mygame) {
         this.mygame = mygame;
         setSprite("toad", 4); // img of the character
