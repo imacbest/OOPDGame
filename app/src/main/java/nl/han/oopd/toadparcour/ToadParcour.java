@@ -95,13 +95,13 @@ public class ToadParcour extends GameEngine {
                 {250, 2100},
                 {344, 2128},
                 {392, 2128},
-                {440, 2128}
+                {440, 2128t}
         };
 
         for(int i = 0; i < coinArray.length; i++) {
             coins.add(new Coin());
             addGameObject(coins.get(i), coinArray[i][0], coinArray[i][1]);
-            Log.d("Game", "Coins created!");
+            Log.d("Game", "Coins created!");    
         }
     }
 
