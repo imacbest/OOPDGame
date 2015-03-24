@@ -32,6 +32,7 @@ public class ToadParcour extends GameEngine {
     private DashboardTextView scoreDisplay;
 
     public ArrayList<Monster> monsters = new ArrayList<>();
+    public ArrayList<Coin> coins = new ArrayList<>();
     /**
      * Initialize the game, create objects and level
      *
@@ -55,6 +56,9 @@ public class ToadParcour extends GameEngine {
 
         monsters.add(new Turtle(toad, 200, 4));
         addGameObject(monsters.get(0), 160, 2010);
+
+        coins.add(new Coin());
+        addGameObject(coins.get(0),30, 2100);
 
 //        for(int i = 0; i < 1; i++){
 //            monsters.add(new Monster(vis));
