@@ -165,6 +165,7 @@ public class ToadParcour extends GameEngine {
     @Override
     public void update() {
         super.update();
+
         Log.d("Pos", "X:" + getPlayer().getX() + "Y:" + getPlayer().getY());
 //        this.scoreDisplay.setTextString(
 //                "Score:T " + String.valueOf(this.toad.getScore()));
