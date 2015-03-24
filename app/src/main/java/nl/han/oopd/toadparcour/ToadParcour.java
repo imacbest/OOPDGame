@@ -25,6 +25,10 @@ public class ToadParcour extends GameEngine {
      */
     private Toad toad;
 
+    /**
+     * Sets the difficulty of the game
+     */
+    public static double difficulty = Constants.EASY;
 
     /**
      * Dashboard for displaying the score
@@ -33,6 +37,7 @@ public class ToadParcour extends GameEngine {
 
     public ArrayList<Monster> monsters = new ArrayList<>();
     public ArrayList<Coin> coins = new ArrayList<>();
+    public ArrayList<Banana> bananas = new ArrayList<>();
     /**
      * Initialize the game, create objects and level
      *
@@ -58,12 +63,7 @@ public class ToadParcour extends GameEngine {
         addGameObject(monsters.get(0), 160, 2010);
 
         loadCoins();
-//        coins.add(new Coin());
-//        coins.add(new Coin());
-//        coins.add(new Coin());
-//        addGameObject(coins.get(0),250, 2100);
-//        addGameObject(coins.get(1),344, 2128);
-//        addGameObject(coins.get(2),392, 2128);
+        loadBananas();
 
 //        for(int i = 0; i < 1; i++){
 //            monsters.add(new Monster(vis));
@@ -88,6 +88,21 @@ public class ToadParcour extends GameEngine {
 //        addToDashboard(imageDisplay);
 
         createDashboard();
+    }
+
+    private void loadBananas() {
+        int[][] bananaArray = new int[][]{
+                {500, 2100},
+                {600, 2128},
+                {650, 2128},
+                {700, 2128}
+        };
+
+        for(int i = 0; i < bananaArray.length; i++) {
+            bananas.add(new Banana());
+            addGameObject(bananas.get(i), bananaArray[i][0], bananaArray[i][1]);
+            Log.d("Game", "banana created!");
+        }
     }
 
     private void loadCoins() {
@@ -167,8 +182,8 @@ public class ToadParcour extends GameEngine {
         super.update();
 
         Log.d("Pos", "X:" + getPlayer().getX() + "Y:" + getPlayer().getY());
-//        this.scoreDisplay.setTextString(
-//                "Score:T " + String.valueOf(this.toad.getScore()));
+        this.scoreDisplay.setTextString(
+                "Score: " + String.valueOf(this.toad.getScore()) + " Coins: " + String.valueOf(this.toad.getCoins()));
     }
 
 
