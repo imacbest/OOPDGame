@@ -6,6 +6,7 @@ import android.gameengine.icadroids.input.OnScreenButtons;
 import android.gameengine.icadroids.objects.GameObject;
 import android.gameengine.icadroids.objects.collisions.ICollision;
 import android.gameengine.icadroids.objects.collisions.TileCollision;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
      * @author Thomas & Max
      */
     private boolean jump = false;
+    private boolean jumping = false;
     private int start = 0;
     private int hoek = 0;
 
@@ -61,10 +63,9 @@ public class Toad extends GravatiyGameObject implements ICollision {
     }
 
     @Override
-    public void update(){
+    public void update() {
         super.update();
         super.gravity(-180);
-
 
 
         // collisions with objects
@@ -81,33 +82,46 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 || OnScreenButtons.dPadLeft || OnScreenButtons.dPadRight
                 || OnScreenButtons.buttonA) {
             buttonPressed = true;
-        } else if(super.isTileOnderSpeler()){
+        } else if (super.isTileOnderSpeler()) {
             buttonPressed = false;
             setDirectionSpeed(0, 0);
         }
 
 
         if (OnScreenButtons.buttonA || (MotionSensor.tiltUp && !buttonPressed)) {
-            if(super.isTileOnderSpeler()) {
-                hoek = 0;
-                jump = true;
-                start = this.getY();
+            setySpeed(-10);
+            if(OnScreenButtons.dPadLeft) {
+                setxSpeed(-5);
+            } else if (OnScreenButtons.dPadRight) {
+                setxSpeed(5);
             }
+
+
+
+
+
+
+//            if (super.isTileOnderSpeler()) {
+//                hoek = 0;
+//                //jump = true;
+//                jumping = true;
+//                start = this.getY();
+//            }
 
         }
 
         if (OnScreenButtons.dPadDown
-                || (MotionSensor.tiltDown && !buttonPressed)){
+                || (MotionSensor.tiltDown && !buttonPressed)) {
             //setDirectionSpeed(180, 8);
             //setFrameNumber(3);
         }
         if (OnScreenButtons.dPadRight
-                || (MotionSensor.tiltRight && !buttonPressed)){
-            if(super.isTileOnderSpeler()) {
+                || (MotionSensor.tiltRight && !buttonPressed)) {
+            if (super.isTileOnderSpeler()) {
                 setDirectionSpeed(90, 8);
                 setFrameNumber(0);
             }
-            if (OnScreenButtons.buttonA ) { //|| (MotionSensor.tiltUp && !buttonPressed)
+            if (OnScreenButtons.buttonA) { //|| (MotionSensor.tiltUp && !buttonPressed)
                 if (super.isTileOnderSpeler()) {
                     jump = true;
                     start = this.getY();
@@ -116,12 +130,12 @@ public class Toad extends GravatiyGameObject implements ICollision {
             }
         }
         if (OnScreenButtons.dPadLeft
-                || (MotionSensor.tiltLeft && !buttonPressed)){
-            if(super.isTileOnderSpeler()) {
+                || (MotionSensor.tiltLeft && !buttonPressed)) {
+            if (super.isTileOnderSpeler()) {
                 setDirectionSpeed(270, 8);
                 setFrameNumber(2);
             }
-            if (OnScreenButtons.buttonA ) { //|| (MotionSensor.tiltUp && !buttonPressed)
+            if (OnScreenButtons.buttonA) { //|| (MotionSensor.tiltUp && !buttonPressed)
                 if (super.isTileOnderSpeler()) {
                     jump = true;
                     start = this.getY();
@@ -131,30 +145,76 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
 
         if (OnScreenButtons.buttonX) {
-            setxSpeed(20);
+            setxSpeed(5);
+            setySpeed(-15);
         }
 
-        if(jump) {
+        if(jumping) {
+            int speed = -25;
+            for(int i = 1 ; i < 11 ; i++) {
+                if (start - this.getY() >= (25 * i) && i <= 10) {
+                    speed += 2.5;
+                }
+                if (i == 10) {
+
+                    start = getY();
+                    speed = 1;
+                }
+                setySpeed(speed);
+            }
+            for(int i = 1 ; i < 11 ; i++) {
+                if(start + this.getY() >= (25 * i)) {
+                    speed += 2.5;
+                }
+                if (i == 10) {
+                    jumping = false;
+                }
+                setySpeed(speed);
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        if (jump) {
             setDirectionSpeed(0, 15);
-            int speed = 25;
-            for(int i = 1 ; i < 20 ; i++) {
-                if(start - this.getY() >= (i * 12) && hoek == 0) {
-                    speed--;
+            int speed = -25;
+            for (int i = 1; i < 20; i++) {
+                if (start - this.getY() >= (i * 12) && hoek == 0) {
+                    speed++;
                     //setDirectionSpeed(0, hoek);
                 }
-                if(start - this.getY() >= 300) {
+                if (start - this.getY() >= 300) {
+                    start = getY();
                     hoek = 180;
-                    speed = 4;
-                }
-                    setDirectionSpeed(hoek, speed);
+                    speed = 0;
+
+                    }
+                for (int j = 1; j < 20; j++) {
+                    if (start + this.getY() >= (j * 12) && hoek == 180) {
+                        speed++;
+                        //setDirectionSpeed(0, hoek);
+                    }
+                    setySpeed(speed);
+                    //setDirectionSpeed(hoek, speed);
                     //jump = false;
                     //gravity(-155);
                 }
-                if(OnScreenButtons.dPadLeft) {
+                if (OnScreenButtons.dPadLeft) {
                     //hoek = 335;
                     setxSpeed(-5);
                 }
-                if(OnScreenButtons.buttonB) {
+                if (OnScreenButtons.buttonB) {
                     //hoek = 25;
                     setxSpeed(5);
 
@@ -163,6 +223,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
             }
 
         }
+    }
 
 
     @Override
