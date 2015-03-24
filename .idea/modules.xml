@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< Updated upstream
       <module fileurl="file://$PROJECT_DIR$/OOPDGame.iml" filepath="$PROJECT_DIR$/OOPDGame.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/OOPDGame2.iml" filepath="$PROJECT_DIR$/OOPDGame2.iml" />
+>>>>>>> Stashed changes
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
