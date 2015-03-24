@@ -101,8 +101,20 @@ public class Toad extends GravatiyGameObject implements ICollision {
             if(isTileOnderSpeler()) {
                 start = getY();
             }
-            if(start - getY() <= 300) {
+            if(start - getY() <= 50) {
+                setySpeed(-25);
+            }
+            else if(start - getY() <= 100) {
+                setySpeed(-20);
+            }
+            else if(start - getY() <= 150) {
+                setySpeed(-15);
+            }
+            else if(start - getY() <= 175) {
                 setySpeed(-10);
+            }
+            else if(start - getY() <= 300) {
+                setySpeed(-5);
             }
             if(OnScreenButtons.dPadLeft) {
                 setFrameNumber(2);
