@@ -15,7 +15,7 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
 
     public FlyingBanana() {
 
-
+        setSprite("trowbanana");
     }
 
     public void update(){
@@ -24,6 +24,8 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
     }
 
     public void move(){
+
+
         // ToDo: flying banana's
     }
 

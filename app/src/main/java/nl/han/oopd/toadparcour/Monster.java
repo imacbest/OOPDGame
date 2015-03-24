@@ -37,7 +37,7 @@ public abstract class Monster extends GravatiyGameObject implements IScore, ICol
         if (timeCounter % 4 == 0) {
             if(isInRange()) {
                 setSpeed(moveSpeed);
-                this.moveTowardsAPoint(target.getCenterX(), target.getCenterY());
+                this.moveTowardsAPoint(target.getCenterX(), this.getY());
             }else{
                 setSpeed(0);
             }
