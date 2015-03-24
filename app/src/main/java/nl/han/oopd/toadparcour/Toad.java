@@ -88,12 +88,8 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
 
 
-<<<<<<< HEAD
-        
-        if (OnScreenButtons.buttonA || (MotionSensor.tiltUp && !buttonPressed)) {
-=======
+
         if (OnScreenButtons.buttonA && !buttonPressed) {
->>>>>>> origin/master
             setySpeed(-10);
             if(OnScreenButtons.dPadLeft) {
                 setxSpeed(-5);
