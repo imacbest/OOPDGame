@@ -73,7 +73,12 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 if(g instanceof Coin){
                     Coin coin = (Coin) g;
                     this.setCoins((this.getCoins()+1));
-                    coin.die();
+                    coin.remove();
+                }
+                if(g instanceof Banana){
+                    Banana banana = (Banana) g;
+                    addBannana();
+                    banana.remove();
                 }
             }
         }
@@ -131,6 +136,10 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
 
 
+    }
+
+    private void addBannana() {
+        this.bananas++;
     }
 
 

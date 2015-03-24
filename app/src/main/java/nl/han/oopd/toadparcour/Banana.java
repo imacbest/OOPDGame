@@ -25,4 +25,8 @@ public class Banana extends Items {
         }
         timeCounterFast++;
     }
+
+    public void remove(){
+        deleteThisGameObject();
+    }
 }

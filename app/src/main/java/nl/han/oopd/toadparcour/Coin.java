@@ -23,7 +23,7 @@ public class Coin extends Items {
         this.turn();
     }
 
-    public void die() {
+    public void remove() {
         deleteThisGameObject();
     }
 
