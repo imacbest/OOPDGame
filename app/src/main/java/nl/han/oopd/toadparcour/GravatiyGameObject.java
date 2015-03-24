@@ -12,9 +12,9 @@ public class GravatiyGameObject extends MoveableGameObject {
      * Handles the gravity in the game
      *
      */
-    protected void gravity(){
+    protected void gravity(int graden){
         if(!isTileOnderSpeler()){
-            setDirectionSpeed(-180, 6.5);
+            setDirectionSpeed(graden, 6.5);
         }
 
     }
@@ -25,5 +25,9 @@ public class GravatiyGameObject extends MoveableGameObject {
      */
     public boolean isTileOnderSpeler(){
         return getTileOnPosition(getX(), getY()+getFrameHeight())!=null;
+    }
+
+    public boolean isTileBovenSpeler(){
+        return getTileOnPosition(getX(), getY()+(getFrameHeight()+25))!=null;
     }
 }

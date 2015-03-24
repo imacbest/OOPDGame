@@ -5,4 +5,9 @@ package nl.han.oopd.toadparcour;
  */
 public class FlyingBanana extends GravatiyGameObject {
 
+    public FlyingBanana() {
+
+
+    }
+
 }

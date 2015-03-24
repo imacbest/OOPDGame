@@ -58,7 +58,7 @@ public class ToadParcour extends GameEngine {
         addGameObject(monsters.get(0), 160, 2010);
 
         coins.add(new Coin());
-        addGameObject(coins.get(0),30, 2100);
+        addGameObject(coins.get(0),250, 2100);
 
 //        for(int i = 0; i < 1; i++){
 //            monsters.add(new Monster(vis));
@@ -145,6 +145,7 @@ public class ToadParcour extends GameEngine {
     @Override
     public void update() {
         super.update();
+
         Log.d("Pos", "X:" + getPlayer().getX() + "Y:" + getPlayer().getY());
 //        this.scoreDisplay.setTextString(
 //                "Score:T " + String.valueOf(this.toad.getScore()));

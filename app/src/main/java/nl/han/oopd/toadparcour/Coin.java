@@ -3,11 +3,14 @@ package nl.han.oopd.toadparcour;
 import android.gameengine.icadroids.input.OnScreenButton;
 import android.gameengine.icadroids.input.OnScreenButtons;
 import android.gameengine.icadroids.objects.MoveableGameObject;
+import android.util.Log;
 
 /**
  * Creating the coins whicht the main character can pick up en collect points
  */
 public class Coin extends Items {
+    private int timeCounter = 0;
+    private int timeCounterFast = 0;
 
     public Coin() {
         //super(target, range, speed);
@@ -19,22 +22,19 @@ public class Coin extends Items {
     public void update(){
         super.update();
         this.turn();
-        //this.move();
     }
 
-    //@Override
     public void die() {
         deleteThisGameObject();
     }
 
 
     public void turn() {
-        if(OnScreenButtons.buttonX) {
-            setFrameNumber(2);
-        } else {
-            setFrameNumber(1);
-
+        if(timeCounterFast % 4 == 0) {
+            setFrameNumber(timeCounter % 4);
+            timeCounter++;
         }
+        timeCounterFast++;
     }
 }
 

@@ -41,7 +41,10 @@ public class Toad extends GravatiyGameObject implements ICollision {
     private int start = 0;
     private int hoek = 0;
 
-
+    /**
+     * Main toad function
+     * @param mygame verwijzing naar hoofdclass
+     */
     public Toad(ToadParcour mygame) {
         this.mygame = mygame;
         setSprite("toad", 4); // img of the character
@@ -60,7 +63,9 @@ public class Toad extends GravatiyGameObject implements ICollision {
     @Override
     public void update(){
         super.update();
-        super.gravity();
+        super.gravity(-180);
+
+
 
         // collisions with objects
         ArrayList<GameObject> gebotst = getCollidedObjects();
@@ -125,23 +130,40 @@ public class Toad extends GravatiyGameObject implements ICollision {
             }
         }
 
+        if (OnScreenButtons.buttonX) {
+            setxSpeed(20);
+        }
+
         if(jump) {
             setDirectionSpeed(0, 15);
             int speed = 25;
-            for(int i = 0 ; i < 20 ; i++) {
-                if(start - this.getY() >= (i * 10)) {
+            for(int i = 1 ; i < 20 ; i++) {
+                if(start - this.getY() >= (i * 12) && hoek == 0) {
                     speed--;
-                    setDirectionSpeed(hoek, speed);
+                    //setDirectionSpeed(0, hoek);
                 }
-                if(start - this.getY() >= 250) {
-                    jump = false;
-                    gravity();
+                if(start - this.getY() >= 300) {
+                    hoek = 180;
+                    speed = 4;
+                }
+                    setDirectionSpeed(hoek, speed);
+                    //jump = false;
+                    //gravity(-155);
+                }
+                if(OnScreenButtons.dPadLeft) {
+                    //hoek = 335;
+                    setxSpeed(-5);
+                }
+                if(OnScreenButtons.buttonB) {
+                    //hoek = 25;
+                    setxSpeed(5);
+
                 }
 
             }
-            //jump = false;
+
         }
-    }
+
 
     @Override
     public void collisionOccurred(List<TileCollision> collidedTiles) {
