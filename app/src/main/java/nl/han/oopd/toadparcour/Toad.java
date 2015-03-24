@@ -91,24 +91,11 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
         if (OnScreenButtons.buttonA && !buttonPressed) {
             setySpeed(-10);
-            if(OnScreenButtons.dPadLeft) {
+            if(OnScreenButtons.buttonY) {
                 setxSpeed(-5);
-            } else if (OnScreenButtons.dPadRight) {
+            } else if (OnScreenButtons.buttonX) {
                 setxSpeed(5);
             }
-
-
-
-
-
-
-//            if (super.isTileOnderSpeler()) {
-//                hoek = 0;
-//                //jump = true;
-//                jumping = true;
-//                start = this.getY();
-//            }
-
         }
 
         if (OnScreenButtons.dPadDown
@@ -145,85 +132,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
             }
         }
 
-        if (OnScreenButtons.buttonX) {
-            setxSpeed(5);
-            setySpeed(-15);
-        }
 
-        if(jumping) {
-            int speed = -25;
-            for(int i = 1 ; i < 11 ; i++) {
-                if (start - this.getY() >= (25 * i) && i <= 10) {
-                    speed += 2.5;
-                }
-                if (i == 10) {
-
-                    start = getY();
-                    speed = 1;
-                }
-                setySpeed(speed);
-            }
-            for(int i = 1 ; i < 11 ; i++) {
-                if(start + this.getY() >= (25 * i)) {
-                    speed += 2.5;
-                }
-                if (i == 10) {
-                    jumping = false;
-                }
-                setySpeed(speed);
-            }
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-        if (jump) {
-            setDirectionSpeed(0, 15);
-            int speed = -25;
-            for (int i = 1; i < 20; i++) {
-                if (start - this.getY() >= (i * 12) && hoek == 0) {
-                    speed++;
-                    //setDirectionSpeed(0, hoek);
-                }
-                if (start - this.getY() >= 300) {
-                    start = getY();
-                    hoek = 180;
-                    speed = 0;
-
-                    }
-                for (int j = 1; j < 20; j++) {
-                    if (start + this.getY() >= (j * 12) && hoek == 180) {
-                        speed++;
-                        //setDirectionSpeed(0, hoek);
-                    }
-                    setySpeed(speed);
-                    //setDirectionSpeed(hoek, speed);
-                    //jump = false;
-                    //gravity(-155);
-                }
-                if (OnScreenButtons.dPadLeft) {
-                    //hoek = 335;
-                    setxSpeed(-5);
-                }
-                if (OnScreenButtons.buttonB) {
-                    //hoek = 25;
-                    setxSpeed(5);
-
-                }
-
-            }
-
-        }
     }
 
 
