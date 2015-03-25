@@ -83,8 +83,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
 
 
-        if (OnScreenButtons.buttonA && !jump && (super.isTileOnderSpeler()|| super.isTileOnderSpelerLinks()
-                || super.isTileOnderSpelerRechts())) {
+        if (OnScreenButtons.buttonA && !jump && super.isTileOnderSpeler()) {
             jump = true;
         } else {
             kracht = 6.5;
@@ -98,14 +97,14 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
         }
         if (OnScreenButtons.dPadRight) {
-            if(super.isTileOnderSpeler() || super.isTileOnderSpelerLinks() || super.isTileOnderSpelerRechts()) {
+            if(super.isTileOnderSpeler()) {
                 setxSpeed(8);
                 setySpeed(0);
                 setFrameNumber(0);
             }
             }
             if (OnScreenButtons.dPadLeft) {
-                if(super.isTileOnderSpeler() || super.isTileOnderSpelerLinks() || super.isTileOnderSpelerRechts()) {
+                if(super.isTileOnderSpeler()) {
                     setxSpeed(-8);
                     setFrameNumber(2);
                 }
@@ -119,7 +118,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
     private void jumping() {
         if (jump) {
             kracht = 0;
-            if (super.isTileOnderSpeler() || super.isTileOnderSpelerLinks() || super.isTileOnderSpelerRechts()) {
+            if (super.isTileOnderSpeler()) {
                 start = getY();
             }
             if (start - getY() <= 50) {
@@ -145,7 +144,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 setFrameNumber(0);
                 setxSpeed(5);
             }
-            if (super.isTileBovenSpeler() || super.isTileLinksSpeler() || super.isTileRechtsSpeler()) {
+            if (super.isTileBovenSpeler()) {
                 jump = false;
                 fall = true;
                 start = getY();
@@ -168,7 +167,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 setFrameNumber(0);
                 setxSpeed(5);
             }
-            if (super.isTileOnderSpeler() || super.isTileOnderSpelerLinks() || super.isTileOnderSpelerRechts()) {
+            if (super.isTileOnderSpeler()) {
                 fall = false;
             }
         }

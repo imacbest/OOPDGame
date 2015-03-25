@@ -25,30 +25,45 @@ public class GravatiyGameObject extends MoveableGameObject {
      * @return boolean
      */
     public boolean isTileOnderSpeler(){
-        return getTileOnPosition(getX(), getY()+getFrameHeight())!=null;
+        if (getTileOnPosition(getX(), getY()+getFrameHeight())!=null) {
+            return true;
+//        } else if (getTileOnPosition(getX()+getFrameWidth(), getY()+getFrameHeight())!=null) {
+//            return true;
+        } else if (getTileOnPosition(getX()-getFrameWidth(), getY()+getFrameHeight())!=null) {
+            return true;
+        } else {
+            return false;
+        }
+//        return getTileOnPosition(getX(), getY()+getFrameHeight())!=null;
     }
 
-    public boolean isTileOnderSpelerLinks(){
-        boolean result = getTileOnPosition(getX()+getFrameWidth(), getY()+getFrameHeight())!=null;
-        Log.d("Tile" + getX(), "Links = " + result);
-        return result;
-                //getTileOnPosition(getX()-5, getY()+getFrameHeight())!=null;
-    }
-
-    public boolean isTileOnderSpelerRechts(){
-        return getTileOnPosition(getX()-getFrameWidth(), getY()+getFrameHeight())!=null;
-    }
+//    public boolean isTileOnderSpelerLinks(){
+//        return getTileOnPosition(getX()+getFrameWidth(), getY()+getFrameHeight())!=null;
+//    }
+//
+//    public boolean isTileOnderSpelerRechts(){
+//        return getTileOnPosition(getX()-getFrameWidth(), getY()+getFrameHeight())!=null;
+//    }
 
     public boolean isTileBovenSpeler(){
-        return getTileOnPosition(getX(), getY()-getFrameHeight())!=null;
+        if (getTileOnPosition(getX(), getY()-getFrameHeight())!=null) {
+            return true;
+
+//        } else if (getTileOnPosition(getX()+getFrameWidth(), getY()-getFrameHeight())!=null) {
+//            return true;
+        } else if (getTileOnPosition(getX()-(getFrameWidth()*2), getY()-getFrameHeight())!=null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public boolean isTileLinksSpeler(){
-        return getTileOnPosition(getX()+2, getX() + getFrameWidth())!=null;
-    }
-
-    public boolean isTileRechtsSpeler(){
-        return getTileOnPosition(getX()-2, getX() - getFrameWidth())!=null;
-    }
+//    public boolean isTileLinksSpeler(){
+//        return getTileOnPosition(getX()+2, getX() + getFrameWidth())!=null;
+//    }
+//
+//    public boolean isTileRechtsSpeler(){
+//        return getTileOnPosition(getX()-2, getX() - getFrameWidth())!=null;
+//    }
 
 }
