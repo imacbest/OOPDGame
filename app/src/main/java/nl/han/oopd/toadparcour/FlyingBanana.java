@@ -13,9 +13,11 @@ import java.util.List;
 public class FlyingBanana extends GravatiyGameObject implements ICollision {
     // ToDo: test this class
 
-    public FlyingBanana() {
+    private int timeCounter = 0;
+    private int timeCounterFast = 0;
 
-        setSprite("trowbanana");
+    public FlyingBanana() {
+        setSprite("bananatrown", 4);
     }
 
     public void update(){
@@ -23,10 +25,20 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
         handleCollisions();
     }
 
+    /**
+     * Beweegt de banaan
+     */
     public void move(){
-
-
         // ToDo: flying banana's
+        turn();
+    }
+
+    public void turn() {
+        if(timeCounterFast % 4 == 0) {
+            setFrameNumber(timeCounter % 4);
+            timeCounter++;
+        }
+        timeCounterFast++;
     }
 
     public void remove(){
