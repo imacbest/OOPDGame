@@ -26,8 +26,4 @@ public class Turtle extends Monster {
         this.move();
     }
 
-    @Override
-    public void die() {
-        deleteThisGameObject();
-    }
 }
