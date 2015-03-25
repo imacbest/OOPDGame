@@ -40,6 +40,8 @@ public class Toad extends GravatiyGameObject implements ICollision {
      */
     private int start = 0;
     private double kracht = 6.5;
+    private boolean jump = false;
+    private boolean fall = false;
 
     /**
      * Main toad function
@@ -65,8 +67,8 @@ public class Toad extends GravatiyGameObject implements ICollision {
         super.update();
         super.gravity(kracht);
         handleCollisions();
+        jumping();
 
-        
         // Handle input. Both on screen buttons and tilting are supported.
         // Buttons take precedence.
         boolean buttonPressed = false;
@@ -81,47 +83,93 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
 
 
-        if (OnScreenButtons.buttonA) {
+        if (OnScreenButtons.buttonA && !jump && super.isTileOnderSpeler()) {
+            jump = true;
+        } else {
+            kracht = 6.5;
+        }
+
+
+        if (OnScreenButtons.dPadDown) {
+
+        }
+        if (OnScreenButtons.dPadUp) {
+
+        }
+        if (OnScreenButtons.dPadRight) {
+                setxSpeed(8);
+                setFrameNumber(0);
+            }
+            if (OnScreenButtons.dPadLeft) {
+                setxSpeed(-8);
+                setFrameNumber(2);
+            }
+
+
+
+    }
+
+
+    private void jumping() {
+        if (jump) {
             kracht = 0;
-            if(isTileOnderSpeler()) {
+            if (isTileOnderSpeler()) {
                 start = getY();
             }
-            if(start - getY() <= 300) {
+            if (start - getY() <= 50) {
+                setySpeed(-30);
+            } else if (start - getY() <= 90) {
+                setySpeed(-25);
+            } else if (start - getY() <= 140) {
+                setySpeed(-20);
+            } else if (start - getY() <= 180) {
+                setySpeed(-15);
+            } else if (start - getY() <= 220) {
                 setySpeed(-10);
+            } else if (start - getY() <= 280) {
+                setySpeed(-5);
+                jump = false;
+                fall = true;
+                start = getY();
             }
-            if(OnScreenButtons.dPadLeft) {
+            if (OnScreenButtons.dPadLeft) {
                 setFrameNumber(2);
                 setxSpeed(-5);
             } else if (OnScreenButtons.dPadRight) {
                 setFrameNumber(0);
                 setxSpeed(5);
             }
-        } else {
-            kracht = 6.5;
-        }
-
-        if (OnScreenButtons.dPadDown
-                && !buttonPressed) {
-            //setDirectionSpeed(180, 8);
-            //setFrameNumber(3);
-        }
-        if (OnScreenButtons.dPadRight
-                || (MotionSensor.tiltRight && !buttonPressed)) {
-            if (super.isTileOnderSpeler()) {
-                setDirectionSpeed(90, 8);
-                setFrameNumber(0);
+            if (super.isTileBovenSpeler() || super.isTileLinksSpeler() || super.isTileRechtsSpeler()) {
+                jump = false;
+                fall = true;
+                start = getY();
             }
         }
-        if (OnScreenButtons.dPadLeft
-                || (MotionSensor.tiltLeft && !buttonPressed)) {
-            if (super.isTileOnderSpeler()) {
-                setDirectionSpeed(270, 8);
+
+
+
+        if (fall) {
+            kracht = 0;
+            if (getY() - start >= 10) {
+                setySpeed(15);
+            } else if (getY() - start >= 90) {
+                setySpeed(20);
+            }
+            if (OnScreenButtons.dPadLeft) {
                 setFrameNumber(2);
+                setxSpeed(-5);
+            } else if (OnScreenButtons.dPadRight) {
+                setFrameNumber(0);
+                setxSpeed(5);
+            }
+            if (super.isTileOnderSpeler()) {
+                fall = false;
             }
         }
-
-
     }
+
+
+
 
     private void handleCollisions() {
         // collisions with objects

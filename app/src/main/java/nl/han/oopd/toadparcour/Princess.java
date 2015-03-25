@@ -11,16 +11,20 @@ public class Princess extends Monster {
      *
      * @param target the MoveableGameObject to be chased
      */
-    public Princess(MoveableGameObject target) {
-        super(target, 50, 8);
+    public Princess(MoveableGameObject target, int range, int speed) {
+        super(target, range, speed);
+        setSprite("princess", 2);
+        this.timeCounter = 0;
     }
 
     @Override
-    public void move() {
+    public void update(){
+        super.update();
+        this.move();
     }
 
     @Override
     public void die() {
-
+        deleteThisGameObject();
     }
 }
