@@ -11,16 +11,17 @@ public class Cat extends Monster {
      *
      * @param target the MoveableGameObject to be chased
      */
-    public Cat(MoveableGameObject target) {
-        super(target, 50, 8);
+    public Cat(MoveableGameObject target, int range, int speed) {
+        super(target, range, speed);
+        //setSprite("");
+    }
+
+    public void update(){
+        super.update();
     }
 
     @Override
     public void move() {
     }
 
-    @Override
-    public void die() {
-
-    }
 }

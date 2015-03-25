@@ -23,8 +23,5 @@ public class Princess extends Monster {
         this.move();
     }
 
-    @Override
-    public void die() {
-        deleteThisGameObject();
-    }
+
 }

@@ -26,7 +26,7 @@ public abstract class Monster extends GravatiyGameObject implements IScore, ICol
 
     public boolean isInRange(){
         int distance = (int)Math.sqrt((this.getX()-target.getX())*(this.getX()-target.getX()) + (this.getY()-target.getY())*(this.getY()-target.getY()));
-        if(distance <= this.range){
+        if(distance <= this.range) {
             return true;
         }
         return false;
@@ -49,11 +49,12 @@ public abstract class Monster extends GravatiyGameObject implements IScore, ICol
         }
     };
 
-    public abstract void die();
+    public void die() {
+        deleteThisGameObject();
+    }
 
     @Override
     public void  update(){
-
         super.update();
     }
 

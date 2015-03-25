@@ -61,6 +61,7 @@ public class ToadParcour extends GameEngine {
         toad = new Toad(this);
         addGameObject(toad, 160, 2110);
 
+<<<<<<< HEAD
         monsters.add(new Turtle(toad, 200, 4));
         monsters.add(new Turtle(toad, 200, 4));
         monsters.add(new Turtle(toad, 200, 4));
@@ -73,6 +74,9 @@ public class ToadParcour extends GameEngine {
 
 
 
+=======
+        loadMonsters();
+>>>>>>> origin/master
         loadCoins();
         loadBananas();
 
@@ -100,6 +104,25 @@ public class ToadParcour extends GameEngine {
 
         createDashboard();
     }
+
+    private void loadMonsters(){
+
+        int[][] monsterCoord = new int[][]{
+                {500, 2100},
+                {600, 2128},
+                {650, 2128},
+                {700, 2128}
+        };
+        monsters.add(new Turtle(toad, Constants.TURTLERANGE, Constants.TURTLESPEED));
+        monsters.add(new Turtle(toad, Constants.TURTLERANGE, Constants.TURTLESPEED));
+        monsters.add(new Cat(toad, Constants.CATRANGE, Constants.CATSPEED));
+        monsters.add(new Princess(toad, Constants.PRINCESSERANGE, Constants.PRINCESSESPEED));
+        for(int i = 0; i < monsterCoord.length; i++){
+            addGameObject(monsters.get(i), monsterCoord[i][0], monsterCoord[i][1]);
+            Log.d("Game", "Monster created!");
+        }
+
+        }
 
     private void loadBananas() {
         int[][] bananaArray = new int[][]{
