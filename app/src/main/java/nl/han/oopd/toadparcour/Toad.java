@@ -83,13 +83,14 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
 
 
-        if (OnScreenButtons.buttonA && !jump && super.isTileOnderSpeler()) {
+        if (OnScreenButtons.buttonA && !jump && (super.isTileOnderSpeler()|| super.isTileOnderSpelerLinks()
+                || super.isTileOnderSpelerRechts())) {
             jump = true;
         } else {
             kracht = 6.5;
         }
 
-
+        //super.isTileOnderSpelerLinks();
         if (OnScreenButtons.dPadDown) {
 
         }
@@ -97,12 +98,17 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
         }
         if (OnScreenButtons.dPadRight) {
+            if(super.isTileOnderSpeler() || super.isTileOnderSpelerLinks() || super.isTileOnderSpelerRechts()) {
                 setxSpeed(8);
+                setySpeed(0);
                 setFrameNumber(0);
             }
+            }
             if (OnScreenButtons.dPadLeft) {
-                setxSpeed(-8);
-                setFrameNumber(2);
+                if(super.isTileOnderSpeler() || super.isTileOnderSpelerLinks() || super.isTileOnderSpelerRechts()) {
+                    setxSpeed(-8);
+                    setFrameNumber(2);
+                }
             }
 
 
@@ -113,7 +119,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
     private void jumping() {
         if (jump) {
             kracht = 0;
-            if (isTileOnderSpeler()) {
+            if (super.isTileOnderSpeler() || super.isTileOnderSpelerLinks() || super.isTileOnderSpelerRechts()) {
                 start = getY();
             }
             if (start - getY() <= 50) {
@@ -162,7 +168,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 setFrameNumber(0);
                 setxSpeed(5);
             }
-            if (super.isTileOnderSpeler()) {
+            if (super.isTileOnderSpeler() || super.isTileOnderSpelerLinks() || super.isTileOnderSpelerRechts()) {
                 fall = false;
             }
         }
