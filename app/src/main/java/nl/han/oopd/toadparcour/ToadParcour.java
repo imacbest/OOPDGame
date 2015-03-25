@@ -62,6 +62,8 @@ public class ToadParcour extends GameEngine {
         addGameObject(toad, 160, 2110);
 
         monsters.add(new Turtle(toad, 200, 4));
+        monsters.add(new Turtle(toad, 200, 4));
+        monsters.add(new Turtle(toad, 200, 4));
         addGameObject(monsters.get(0), 160, 2140);
         addGameObject(monsters.get(1), 550, 2140);
         addGameObject(monsters.get(2), 850, 2140);
