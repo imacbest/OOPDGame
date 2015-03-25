@@ -26,6 +26,11 @@ public class ToadParcour extends GameEngine {
     private Toad toad;
 
     /**
+     * sound controler
+     */
+    private SoundController sound;
+
+    /**
      * Sets the difficulty of the game
      */
     public static double difficulty = Constants.EASY;
@@ -54,7 +59,6 @@ public class ToadParcour extends GameEngine {
         OnScreenButtons.use = true;
 
         createTileEnvironment();
-
 
 
 
@@ -98,9 +102,9 @@ public class ToadParcour extends GameEngine {
                 {650, 2128},
                 {700, 2128}
         };
-        monsters.add(new Turtle(toad, Constants.TURTLERANGE, Constants.TURTLESPEED));
-        monsters.add(new Turtle(toad, Constants.TURTLERANGE, Constants.TURTLESPEED));
         monsters.add(new Cat(toad, Constants.CATRANGE, Constants.CATSPEED));
+        monsters.add(new Turtle(toad, Constants.TURTLERANGE, Constants.TURTLESPEED));
+        monsters.add(new Turtle(toad, Constants.TURTLERANGE, Constants.TURTLESPEED));
         monsters.add(new Princess(toad, Constants.PRINCESSERANGE, Constants.PRINCESSESPEED));
         for(int i = 0; i < monsterCoord.length; i++){
             addGameObject(monsters.get(i), monsterCoord[i][0], monsterCoord[i][1]);
