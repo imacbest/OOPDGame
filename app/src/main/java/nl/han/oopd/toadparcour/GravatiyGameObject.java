@@ -1,6 +1,7 @@
 package nl.han.oopd.toadparcour;
 
 import android.gameengine.icadroids.objects.MoveableGameObject;
+import android.util.Log;
 
 /**
  * Adds gravaty to the game
@@ -24,7 +25,18 @@ public class GravatiyGameObject extends MoveableGameObject {
      * @return boolean
      */
     public boolean isTileOnderSpeler(){
-        return getTileOnPosition(getX()+2, getY()+getFrameHeight())!=null;
+        return getTileOnPosition(getX(), getY()+getFrameHeight())!=null;
+    }
+
+    public boolean isTileOnderSpelerLinks(){
+        boolean result = getTileOnPosition(getX()+getFrameWidth(), getY()+getFrameHeight())!=null;
+        Log.d("Tile" + getX(), "Links = " + result);
+        return result;
+                //getTileOnPosition(getX()-5, getY()+getFrameHeight())!=null;
+    }
+
+    public boolean isTileOnderSpelerRechts(){
+        return getTileOnPosition(getX()-getFrameWidth(), getY()+getFrameHeight())!=null;
     }
 
     public boolean isTileBovenSpeler(){
