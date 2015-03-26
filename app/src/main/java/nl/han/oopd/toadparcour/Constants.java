@@ -1,7 +1,7 @@
 package nl.han.oopd.toadparcour;
 
 /**
- * Constants
+ * All constants that can be used in the game
  * @author Thomas
  */
 public interface Constants {
@@ -21,4 +21,6 @@ public interface Constants {
     public static final int RIGHT = 90;
     public static final int DOWN = 180;
     public static final int LEFT = 270;
+
+    public static final int BANANASPEED = 4;
 }

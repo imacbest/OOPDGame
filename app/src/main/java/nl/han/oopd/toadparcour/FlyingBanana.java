@@ -10,19 +10,30 @@ import java.util.List;
 
 /**
  * Created the flying bananas, where the main character can kill the monsters with
+ * @author Thomas Kool
  */
 public class FlyingBanana extends GravatiyGameObject implements ICollision {
-    // ToDo: test this class
+    // ToDo: test this class thoroughly
 
+    /**
+     * counters needed for the animation
+     */
     private int timeCounter = 0;
     private int timeCounterFast = 0;
+    /**
+     * instance of toad
+     */
     private Toad toad;
-    private int bananaSpeed = 8;
 
+    /**
+     * Constructor
+     * @param toad
+     * @param direction
+     */
     public FlyingBanana(Toad toad, double direction) {
         this.toad = toad;
         setSprite("bananatrown", 4);
-        setDirectionSpeed(direction, bananaSpeed);
+        setDirectionSpeed(direction, Constants.BANANASPEED);
     }
 
     public void update(){
@@ -31,7 +42,7 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
     }
 
     /**
-     * Beweegt de banaan
+     * Moves the banana
      */
     public void move(){
         Log.d("Banana", "Banana flying");
@@ -58,7 +69,7 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
                 if(g instanceof Monster){
                     ((Monster) g).die();
                     this.remove();
-                    toad.setScore((int)(20 * (int)ToadParcour.difficulty));
+                    toad.setScore(20);
                     Log.d("Monster", "Monster destroyed");
                 }
             }

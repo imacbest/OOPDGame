@@ -13,10 +13,13 @@ import java.util.List;
 
 /**
  * The main character of the game
- * @author Thomas & Max
+ * @author Thomas Kool & Max Groenendijk
  */
 public class Toad extends GravatiyGameObject implements ICollision {
 
+    /**
+     * instance of ToadParcour
+     */
     private ToadParcour mygame;
 
     /**
@@ -34,19 +37,20 @@ public class Toad extends GravatiyGameObject implements ICollision {
      */
     private int score;
 
-    /**
-     * The main character of the game
-     * @author Thomas & Max
-     */
+    // ToDo: max wat doen deze variabelen?
     private int start = 0;
     private double kracht = 6.5;
     private boolean jump = false;
     private boolean fall = false;
+
+    /**
+     * The direction Toad is looking at, needed for the banana's
+     */
     private double prevDirection = Constants.RIGHT;
 
     /**
      * Main toad function
-     * @param mygame verwijzing naar hoofdclass
+     * @param mygame reffrence to the ToadParcour instance
      */
     public Toad(ToadParcour mygame) {
         this.mygame = mygame;
@@ -59,10 +63,18 @@ public class Toad extends GravatiyGameObject implements ICollision {
         this.score = 0;
     }
 
+    /**
+     * Get the current score of the player
+     * @return players score
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * update function
+     * ToDo: clean up this update function
+     */
     @Override
     public void update() {
         super.update();
@@ -119,6 +131,9 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
     }
 
+    /**
+     * Function to throw a bannana, it add's a movebleGameObject
+     */
     private void throwBanana() {
         if (getBananas() != 0) {
             setBananas(-1);
@@ -127,7 +142,9 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
     }
 
-
+    /**
+     * ToDo: functie beschrijven AUB
+     */
     private void jumping() {
         if (jump) {
             kracht = 0;
@@ -187,8 +204,9 @@ public class Toad extends GravatiyGameObject implements ICollision {
     }
 
 
-
-
+    /**
+     * This function handles all collions with other objects (not tiles)
+     */
     private void handleCollisions() {
         // collisions with objects
         ArrayList<GameObject> gebotst = getCollidedObjects();
@@ -197,6 +215,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 if(g instanceof Coin){
                     Coin coin = (Coin) g;
                     this.setCoins((this.getCoins()+1));
+                    this.setScore(10);
                     coin.remove();
                 }
                 if(g instanceof Banana){
@@ -208,11 +227,18 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
     }
 
+    /**
+     * Adds a banana to toad's inventory
+     */
     private void addBannana() {
         this.bananas++;
     }
 
-
+    /**
+     * handles all collisions with tiles
+     * @param collidedTiles List of TileCollision holding all tile collisions in this move.
+     *
+     */
     @Override
     public void collisionOccurred(List<TileCollision> collidedTiles) {
         // Do we know for certain that the for-each loop goes through the list
@@ -227,14 +253,26 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
     }
 
+    /**
+     * Get current amount of coins
+     * @return coins
+     */
     public int getCoins() {
         return coins;
     }
 
+    /**
+     * get current amount of bananas
+     * @return bananas
+     */
     public int getBananas() {
         return bananas;
     }
 
+    /**
+     * Let's you change the amount of coins, checks if the value stays above zero
+     * @param coins
+     */
     public void setCoins(int coins) {
         if(coins < 0){
             this.coins = 0;
@@ -243,10 +281,18 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
     }
 
+    /**
+     * Let's you set the score, even below zero
+     * @param score
+     */
     public void setScore(int score) {
-        this.score += score;
+        this.score += (score * (int)ToadParcour.difficulty);
     }
 
+    /**
+     * Let's you set the amount of banana's toad is carrying, it also makes sure that the value stays above zero
+     * @param bananas
+     */
     public void setBananas(int bananas) {
         if (this.bananas + bananas <= 0) {
             this.bananas = 0;
@@ -256,7 +302,10 @@ public class Toad extends GravatiyGameObject implements ICollision {
     }
 
 
-
+    /**
+     * Functiont to determine at wich direction toad is looking
+     * @return direction
+     */
     public double getLookDirection() {
         if(getX() < getPrevX()){
             Log.d("Directions", "links");

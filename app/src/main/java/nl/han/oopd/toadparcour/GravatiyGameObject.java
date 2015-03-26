@@ -66,4 +66,6 @@ public class GravatiyGameObject extends MoveableGameObject {
 //        return getTileOnPosition(getX()-2, getX() - getFrameWidth())!=null;
 //    }
 
+
+
 }
