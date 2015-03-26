@@ -42,7 +42,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
     private double kracht = 6.5;
     private boolean jump = false;
     private boolean fall = false;
-    private double prevDirection = 0;
+    private double prevDirection = Constants.RIGHT;
 
     /**
      * Main toad function

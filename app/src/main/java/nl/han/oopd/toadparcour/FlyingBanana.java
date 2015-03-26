@@ -34,7 +34,6 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
      * Beweegt de banaan
      */
     public void move(){
-        // ToDo: flying banana's
         Log.d("Banana", "Banana flying");
         turn();
     }
