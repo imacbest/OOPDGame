@@ -149,7 +149,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
     private void throwBanana() {
         if (getBananas() != 0) {
             setBananas(-1);
-            mygame.addGameObject(new FlyingBanana(this, getLookDirection()), (int) getCenterX(), (int) getCenterY()-25);
+            mygame.addGameObject(new FlyingBanana(this, (int)getLookDirection()), (int) getCenterX(), (int) getCenterY()-25);
             Log.d("Banana", "Banana added");
         }
     }
@@ -256,20 +256,18 @@ public class Toad extends GravatiyGameObject implements ICollision {
         this.bananas++;
     }
 
-<<<<<<< HEAD
+
     private void addMonster(Monster monster) {
         this.score++;
         Log.d("monster", "=" + monster);
     }
 
-
-=======
     /**
      * handles all collisions with tiles
      * @param collidedTiles List of TileCollision holding all tile collisions in this move.
      *
      */
->>>>>>> origin/master
+
     @Override
     public void collisionOccurred(List<TileCollision> collidedTiles) {
         // Do we know for certain that the for-each loop goes through the list
