@@ -262,11 +262,6 @@ public class Toad extends GravatiyGameObject implements ICollision {
         Log.d("monster", "=" + monster);
     }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> c80cc2c9eb7dceb453e731fb2b0ed03706d77f8a
     /**
      * handles all collisions with tiles
      * @param collidedTiles List of TileCollision holding all tile collisions in this move.
