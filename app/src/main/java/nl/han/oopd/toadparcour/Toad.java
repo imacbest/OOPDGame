@@ -155,7 +155,8 @@ public class Toad extends GravatiyGameObject implements ICollision {
     }
 
     /**
-     * ToDo: functie beschrijven AUB
+     * Function to let Toad jump on a natural way. How higher he jumps, how lower the speed is. Wanneer Toad
+     * onder een tile komt of hij hoger dan 300 px springt, stopt de sprong en gaat hij weer naar beneden.
      */
     private void jumping() {
         if (jump) {
