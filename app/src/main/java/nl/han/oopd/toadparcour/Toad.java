@@ -73,7 +73,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
     /**
      * update function
-     * ToDo: clean up this update function
+     * ToDo: clean up this update function (MAX)
      */
     @Override
     public void update() {
