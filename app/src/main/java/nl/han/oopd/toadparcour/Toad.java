@@ -25,7 +25,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
     /**
      * Number of bananas that toad is carrying
      */
-    private int bananas = 100;
+    private int bananas = 0;
 
     /**
      * Number of coins that toad have collected
@@ -137,7 +137,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
     private void throwBanana() {
         if (getBananas() != 0) {
             setBananas(-1);
-            mygame.addGameObject(new FlyingBanana(this, getLookDirection()), (int) getCenterX(), (int) getCenterY());
+            mygame.addGameObject(new FlyingBanana(this, getLookDirection()), (int) getCenterX(), (int) getCenterY()-25);
             Log.d("Banana", "Banana added");
         }
     }
