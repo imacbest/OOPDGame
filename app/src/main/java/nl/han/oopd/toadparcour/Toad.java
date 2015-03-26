@@ -258,7 +258,6 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
 
     private void addMonster(Monster monster) {
-        this.score++;
         Log.d("monster", "=" + monster);
     }
 
