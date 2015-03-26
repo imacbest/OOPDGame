@@ -22,7 +22,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
     /**
      * Number of bananas that toad is carrying
      */
-    private int bananas = 0;
+    private int bananas = 100;
 
     /**
      * Number of coins that toad have collected
@@ -42,6 +42,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
     private double kracht = 6.5;
     private boolean jump = false;
     private boolean fall = false;
+    private double prevDirection = 0;
 
     /**
      * Main toad function
@@ -81,6 +82,10 @@ public class Toad extends GravatiyGameObject implements ICollision {
             setDirectionSpeed(0, 0);
         }
 
+        if(OnScreenButtons.buttonX){
+            throwBanana();
+        }
+
 
 
         if (OnScreenButtons.buttonA && !jump && super.isTileOnderSpeler()) {
@@ -112,6 +117,14 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
 
 
+    }
+
+    private void throwBanana() {
+        if (getBananas() != 0) {
+            setBananas(-1);
+            mygame.addGameObject(new FlyingBanana(this, getLookDirection()), (int) getCenterX(), (int) getCenterY());
+            Log.d("Banana", "Banana added");
+        }
     }
 
 
@@ -226,12 +239,12 @@ public class Toad extends GravatiyGameObject implements ICollision {
         if(coins < 0){
             this.coins = 0;
         }else{
-            this.coins = coins;
+            this.coins += coins;
         }
     }
 
     public void setScore(int score) {
-        this.score = score;
+        this.score += score;
     }
 
     public void setBananas(int bananas) {
@@ -244,4 +257,18 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
 
 
+    public double getLookDirection() {
+        if(getX() < getPrevX()){
+            Log.d("Directions", "links");
+            this.prevDirection = Constants.LEFT;
+            return Constants.LEFT;
+        }else if(getX() > getPrevX()){
+            Log.d("Directions", "rechts");
+            this.prevDirection = Constants.RIGHT;
+            return Constants.RIGHT;
+        }else{
+            return prevDirection;
+        }
+
+    }
 }

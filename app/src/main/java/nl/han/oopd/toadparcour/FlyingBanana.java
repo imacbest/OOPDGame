@@ -3,6 +3,7 @@ package nl.han.oopd.toadparcour;
 import android.gameengine.icadroids.objects.GameObject;
 import android.gameengine.icadroids.objects.collisions.ICollision;
 import android.gameengine.icadroids.objects.collisions.TileCollision;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,13 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
 
     private int timeCounter = 0;
     private int timeCounterFast = 0;
+    private Toad toad;
+    private int bananaSpeed = 8;
 
-    public FlyingBanana() {
+    public FlyingBanana(Toad toad, double direction) {
+        this.toad = toad;
         setSprite("bananatrown", 4);
+        setDirectionSpeed(direction, bananaSpeed);
     }
 
     public void update(){
@@ -30,6 +35,7 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
      */
     public void move(){
         // ToDo: flying banana's
+        Log.d("Banana", "Banana flying");
         turn();
     }
 
@@ -51,8 +57,10 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
         if (gebotst != null) {
             for (GameObject g : gebotst) {
                 if(g instanceof Monster){
-                    Monster monster = (Monster) g;
-                    monster.die();
+                    ((Monster) g).die();
+                    this.remove();
+                    toad.setScore((int)(20 * (int)ToadParcour.difficulty));
+                    Log.d("Monster", "Monster destroyed");
                 }
             }
         }
@@ -60,9 +68,6 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
 
     @Override
     public void collisionOccurred(List<TileCollision> collidedTiles) {
-        // Do we know for certain that the for-each loop goes through the list
-        // front to end?
-        // If not, we have to use a different iterator!
         for (TileCollision tc : collidedTiles){
             this.remove();
         }
