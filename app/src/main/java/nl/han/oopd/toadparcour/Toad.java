@@ -81,8 +81,6 @@ public class Toad extends GravatiyGameObject implements ICollision {
         super.gravity(kracht);
         handleCollisions();
         jumping();
-        Log.d("fall", "=" + fall);
-        Log.d("tileOnder" + isTileOnderSpeler(), "tileBoven" + isTileBovenSpeler());
 
         // Handle input. Both on screen buttons and tilting are supported.
         // Buttons take precedence.
@@ -96,29 +94,12 @@ public class Toad extends GravatiyGameObject implements ICollision {
             setDirectionSpeed(0, 0);
         }
 
-        if(OnScreenButtons.buttonX){
-            throwBanana();
-        }
-
-
-
         if (OnScreenButtons.buttonA && !jump && super.isTileOnderSpeler()) {
             jump = true;
         } else {
             kracht = 6.5;
         }
 
-        if (OnScreenButtons.buttonX) {
-
-        }
-
-        //super.isTileOnderSpelerLinks();
-        if (OnScreenButtons.dPadDown) {
-
-        }
-        if (OnScreenButtons.dPadUp) {
-
-        }
         if (OnScreenButtons.dPadRight) {
             if(super.isTileOnderSpeler()) {
                 setxSpeed(8);
@@ -126,21 +107,18 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 setFrameNumber(0);
             }
             }
-            if (OnScreenButtons.dPadLeft) {
-                if(super.isTileOnderSpeler()) {
-                    setxSpeed(-8);
-                    setFrameNumber(2);
-                }
+        if (OnScreenButtons.dPadLeft) {
+            if(super.isTileOnderSpeler()) {
+                setxSpeed(-8);
+                setFrameNumber(2);
             }
+        }
 
         if(!isTileOnderSpeler() && !jump) {
             fall = true;
         } else if(isTileOnderSpeler()) {
             fall = false;
         }
-
-
-
     }
 
     /**
@@ -155,7 +133,8 @@ public class Toad extends GravatiyGameObject implements ICollision {
     }
 
     /**
-     * ToDo: functie beschrijven AUB
+     * Function to let Toad jump on a natural way. How higher he jumps, how lower the speed is. Wanneer Toad
+     * onder een tile komt of hij hoger dan 300 px springt, stopt de sprong en gaat hij weer naar beneden.
      */
     private void jumping() {
         if (jump) {
