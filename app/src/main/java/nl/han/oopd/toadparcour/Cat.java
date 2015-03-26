@@ -3,7 +3,7 @@ package nl.han.oopd.toadparcour;
 import android.gameengine.icadroids.objects.MoveableGameObject;
 
 /**
- * Created by maxgroenendijk on 23-03-15.
+ * @author Thomas Kool & Max Groenendijk
  */
 public class Cat extends Monster {
     /**

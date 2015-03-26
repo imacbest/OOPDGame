@@ -9,22 +9,44 @@ import android.util.Log;
 import java.util.List;
 
 /**
- * Monster
+ * The class for all Monstercreatures
+ * @author Thomas Kool & Max Groenendijk
  */
 public abstract class Monster extends GravatiyGameObject implements IScore, ICollision{
+    /**
+     * counter
+     */
     protected int timeCounter;
+    /**
+     * the target for the monster
+     */
     protected MoveableGameObject target;
-
+    /**
+     * the speed at which the monster moves
+     */
     protected int moveSpeed;
+
+    /**
+     * The range which the monster can see the target
+     */
     private int range;
 
-
+    /**
+     * Constructor
+     * @param target the target that the monster will attack (toad)
+     * @param range the ranges at which the monster can spot its target
+     * @param speed the speed the monster will move
+     */
     public Monster(MoveableGameObject target, int range, int speed){
         this.target = target;
         this.range = range;
         this.moveSpeed = speed;
     }
 
+    /**
+     * checks if the monster is in range of the target, if so it will return true
+     * @return boolean
+     */
     public boolean isInRange(){
         int distance = (int)Math.sqrt((this.getX()-target.getX())*(this.getX()-target.getX()) + (this.getY()-target.getY())*(this.getY()-target.getY()));
         if(distance <= this.range) {
@@ -33,6 +55,10 @@ public abstract class Monster extends GravatiyGameObject implements IScore, ICol
         return false;
     }
 
+    /**
+     * the function that makes the monster move
+     * This function also makes the monster look the right way
+     */
     public void move(){
         timeCounter++;
         if (timeCounter % 4 == 0) {
@@ -50,6 +76,9 @@ public abstract class Monster extends GravatiyGameObject implements IScore, ICol
         }
     };
 
+    /**
+     * Removes the monster from the game
+     */
     public void die() {
         deleteThisGameObject();
     }
