@@ -250,6 +250,10 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 setSpeed(0);
                 break;
             }
+            if(tc.theTile.getTileType() == 1){
+                this.setScore(-10);
+                break;
+            }
         }
     }
 
