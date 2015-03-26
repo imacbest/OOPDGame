@@ -38,29 +38,31 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
 
     public void update(){
         super.update();
+        turn();
         handleCollisions();
     }
 
     /**
-     * Moves the banana
+     * makes the banana turn
      */
-    public void move(){
-        Log.d("Banana", "Banana flying");
-        turn();
-    }
-
     public void turn() {
-        if(timeCounterFast % 4 == 0) {
+        if(timeCounterFast % 2 == 0) {
             setFrameNumber(timeCounter % 4);
             timeCounter++;
         }
         timeCounterFast++;
     }
 
+    /**
+     * removes the banana from the game
+     */
     public void remove(){
         deleteThisGameObject();
     }
 
+    /**
+     * handles any collisions with monsters or other objects
+     */
     private void handleCollisions() {
         // collisions with objects
         ArrayList<GameObject> gebotst = getCollidedObjects();
@@ -76,6 +78,11 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
         }
     }
 
+    /**
+     * handles any collisions with tiles
+     * @param collidedTiles List of TileCollision holding all tile collisions in this move.
+     *
+     */
     @Override
     public void collisionOccurred(List<TileCollision> collidedTiles) {
         for (TileCollision tc : collidedTiles){

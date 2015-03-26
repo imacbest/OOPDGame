@@ -8,7 +8,7 @@ import android.util.Log;
  * @author Thomas & Max
  */
 public class GravatiyGameObject extends MoveableGameObject {
-
+    // ToDo: add JavaDoc!!
     /**
      * Handles the gravity in the game
      *

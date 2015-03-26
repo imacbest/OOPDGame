@@ -4,8 +4,8 @@ import android.gameengine.icadroids.objects.MoveableGameObject;
 import android.util.Log;
 
 /**
- * Created by maxgroenendijk on 23-03-15.
- * @author Thomas & Max
+ * function for the turtle monster
+ * @author Thomas Kool & Max Groenendijk
  */
 public class Turtle extends Monster {
 

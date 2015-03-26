@@ -95,6 +95,9 @@ public class ToadParcour extends GameEngine {
         createDashboard();
     }
 
+    /**
+     * Creates and loads all the monsters
+     */
     private void loadMonsters(){
 
         int[][] monsterCoord = new int[][]{
@@ -114,6 +117,9 @@ public class ToadParcour extends GameEngine {
 
         }
 
+    /**
+     * creates and loads all bananas
+     */
     private void loadBananas() {
         int[][] bananaArray = new int[][]{
                 {500, 2100},
@@ -129,6 +135,9 @@ public class ToadParcour extends GameEngine {
         }
     }
 
+    /**
+     * creates and loads all coins
+     */
     private void loadCoins() {
         int[][] coinArray = new int[][]{
                 {250, 2100},
@@ -145,6 +154,9 @@ public class ToadParcour extends GameEngine {
     }
 
 
+    /**
+     * creates the dashboard for the score etc
+     */
     private void createDashboard(){
 
         //this.scoreDisplay.setWidgetWidth(20);
@@ -166,7 +178,6 @@ public class ToadParcour extends GameEngine {
      */
     private void createTileEnvironment() {
         String[] tileImagesNames = { "grey", "lava","vissentile1", "wooddoor","vissentile1","house", "red"};
-        // layout: better not let the Eclipse formatter get at this...
         int[][] tilemap =
                 { {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -196,8 +207,6 @@ public class ToadParcour extends GameEngine {
     }
 
     /**
-     * Update the game. At this moment, we only need to update the Dashboard.
-     * Note: the Dashboard settings will be adjusted!!!
      *
      * @see android.gameengine.icadroids.engine.GameEngine#update()
      */
@@ -212,7 +221,11 @@ public class ToadParcour extends GameEngine {
                 "Bananas: " + String.valueOf(this.toad.getBananas()));
     }
 
-
+    /**
+     * creates the view for the player
+     * @param player
+     * @param zoom
+     */
     private void createViewPort(Toad player, float zoom){
         // Switch it on
         Viewport.useViewport = true;

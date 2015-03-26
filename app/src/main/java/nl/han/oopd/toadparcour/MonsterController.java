@@ -4,6 +4,7 @@ import android.gameengine.icadroids.alarms.IAlarm;
 
 /**
  * controles the alarms for the monsters
+ * @author Thomas Kool & Max Groenendijk
  */
 public class MonsterController implements IAlarm {
 
