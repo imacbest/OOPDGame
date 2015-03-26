@@ -45,18 +45,4 @@ public class GravatiyGameObject extends MoveableGameObject {
         }
             return false;
     }
-<<<<<<< HEAD
-=======
-
-//    public boolean isTileLinksSpeler(){
-//        return getTileOnPosition(getX()+2, getX() + getFrameWidth())!=null;
-//    }
-//
-//    public boolean isTileRechtsSpeler(){
-//        return getTileOnPosition(getX()-2, getX() - getFrameWidth())!=null;
-//    }
-
-
-
->>>>>>> origin/master
 }
