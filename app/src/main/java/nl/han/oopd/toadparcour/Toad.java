@@ -37,7 +37,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
      */
     private int score = 0;
 
-    // ToDo: max wat doen deze variabelen?
+    // ToDo: max wat doen deze variabelen? Javadoc toevoeg :)
     private int start = 0;
     private double kracht = 6.5;
     private boolean jump = false;
@@ -73,7 +73,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
     /**
      * update function
-     * ToDo: clean up this update function
+     * ToDo: clean up this update function (MAX)
      */
     @Override
     public void update() {
@@ -237,7 +237,6 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
 
     private void addMonster(Monster monster) {
-        this.score++;
         Log.d("monster", "=" + monster);
     }
 
