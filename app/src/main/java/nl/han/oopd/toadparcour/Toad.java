@@ -32,7 +32,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
     /**
      * The score of the main character
      */
-    private int score;
+    private int score = 0;
 
     /**
      * The main character of the game
@@ -68,6 +68,8 @@ public class Toad extends GravatiyGameObject implements ICollision {
         super.gravity(kracht);
         handleCollisions();
         jumping();
+        Log.d("fall", "=" + fall);
+        Log.d("tileOnder" + isTileOnderSpeler(), "tileBoven" + isTileBovenSpeler());
 
         // Handle input. Both on screen buttons and tilting are supported.
         // Buttons take precedence.
@@ -87,6 +89,10 @@ public class Toad extends GravatiyGameObject implements ICollision {
             jump = true;
         } else {
             kracht = 6.5;
+        }
+
+        if (OnScreenButtons.buttonX) {
+
         }
 
         //super.isTileOnderSpelerLinks();
@@ -109,6 +115,12 @@ public class Toad extends GravatiyGameObject implements ICollision {
                     setFrameNumber(2);
                 }
             }
+
+        if(!isTileOnderSpeler() && !jump) {
+            fall = true;
+        } else if(isTileOnderSpeler()) {
+            fall = false;
+        }
 
 
 
@@ -191,12 +203,27 @@ public class Toad extends GravatiyGameObject implements ICollision {
                     addBannana();
                     banana.remove();
                 }
+                if(g instanceof Monster){
+                    Monster monster = (Monster) g;
+                    if(fall) {
+                        addMonster(monster);
+                        monster.die();
+                    } else if(isTileOnderSpeler()) {
+                        setScore(100);
+
+                    }
+                }
             }
         }
     }
 
     private void addBannana() {
         this.bananas++;
+    }
+
+    private void addMonster(Monster monster) {
+        this.score++;
+        Log.d("monster", "=" + monster);
     }
 
 

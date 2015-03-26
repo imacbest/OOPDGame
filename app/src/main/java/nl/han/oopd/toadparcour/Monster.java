@@ -4,6 +4,7 @@ import android.gameengine.icadroids.objects.MoveableGameObject;
 import android.gameengine.icadroids.objects.collisions.ICollision;
 import android.gameengine.icadroids.objects.collisions.TileCollision;
 import android.location.Location;
+import android.util.Log;
 
 import java.util.List;
 

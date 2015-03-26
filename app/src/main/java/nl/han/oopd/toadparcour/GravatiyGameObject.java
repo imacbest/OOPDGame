@@ -27,43 +27,22 @@ public class GravatiyGameObject extends MoveableGameObject {
     public boolean isTileOnderSpeler(){
         if (getTileOnPosition(getX(), getY()+getFrameHeight())!=null) {
             return true;
-//        } else if (getTileOnPosition(getX()+getFrameWidth(), getY()+getFrameHeight())!=null) {
-//            return true;
-        } else if (getTileOnPosition(getX()-getFrameWidth(), getY()+getFrameHeight())!=null) {
+        } else if (getTileOnPosition(getX()+getFrameWidth(), getY()+getFrameHeight())!=null) {
             return true;
-        } else {
-            return false;
         }
-//        return getTileOnPosition(getX(), getY()+getFrameHeight())!=null;
+        return false;
     }
 
-//    public boolean isTileOnderSpelerLinks(){
-//        return getTileOnPosition(getX()+getFrameWidth(), getY()+getFrameHeight())!=null;
-//    }
-//
-//    public boolean isTileOnderSpelerRechts(){
-//        return getTileOnPosition(getX()-getFrameWidth(), getY()+getFrameHeight())!=null;
-//    }
-
+    /**
+     * Checkt if there is a tile above the player
+     * @return boolean
+     */
     public boolean isTileBovenSpeler(){
         if (getTileOnPosition(getX(), getY()-getFrameHeight())!=null) {
             return true;
-
-//        } else if (getTileOnPosition(getX()+getFrameWidth(), getY()-getFrameHeight())!=null) {
-//            return true;
-        } else if (getTileOnPosition(getX()-(getFrameWidth()*2), getY()-getFrameHeight())!=null) {
+        } else if (getTileOnPosition(getX()+getFrameWidth(), getY()-getFrameHeight())!=null) {
             return true;
-        } else {
-            return false;
         }
+            return false;
     }
-
-//    public boolean isTileLinksSpeler(){
-//        return getTileOnPosition(getX()+2, getX() + getFrameWidth())!=null;
-//    }
-//
-//    public boolean isTileRechtsSpeler(){
-//        return getTileOnPosition(getX()-2, getX() - getFrameWidth())!=null;
-//    }
-
 }

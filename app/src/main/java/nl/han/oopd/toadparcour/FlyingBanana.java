@@ -16,7 +16,7 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
     private int timeCounter = 0;
     private int timeCounterFast = 0;
 
-    public FlyingBanana() {
+    public FlyingBanana(int speed) {
         setSprite("bananatrown", 4);
     }
 
