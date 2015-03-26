@@ -220,7 +220,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
                         addMonster(monster);
                         monster.die();
                     } else if(isTileOnderSpeler()) {
-                        setScore(100);
+
 
                     }
                 }
