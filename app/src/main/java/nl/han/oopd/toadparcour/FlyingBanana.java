@@ -25,6 +25,9 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
      */
     private Toad toad;
 
+<<<<<<< HEAD
+    public FlyingBanana(int speed) {
+=======
     /**
      * Constructor
      * @param toad
@@ -32,6 +35,7 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
      */
     public FlyingBanana(Toad toad, double direction) {
         this.toad = toad;
+>>>>>>> origin/master
         setSprite("bananatrown", 4);
         setDirectionSpeed(direction, Constants.BANANASPEED);
     }

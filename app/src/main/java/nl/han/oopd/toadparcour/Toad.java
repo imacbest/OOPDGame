@@ -35,7 +35,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
     /**
      * The score of the main character
      */
-    private int score;
+    private int score = 0;
 
     // ToDo: max wat doen deze variabelen?
     private int start = 0;
@@ -81,6 +81,8 @@ public class Toad extends GravatiyGameObject implements ICollision {
         super.gravity(kracht);
         handleCollisions();
         jumping();
+        Log.d("fall", "=" + fall);
+        Log.d("tileOnder" + isTileOnderSpeler(), "tileBoven" + isTileBovenSpeler());
 
         // Handle input. Both on screen buttons and tilting are supported.
         // Buttons take precedence.
@@ -106,6 +108,10 @@ public class Toad extends GravatiyGameObject implements ICollision {
             kracht = 6.5;
         }
 
+        if (OnScreenButtons.buttonX) {
+
+        }
+
         //super.isTileOnderSpelerLinks();
         if (OnScreenButtons.dPadDown) {
 
@@ -126,6 +132,12 @@ public class Toad extends GravatiyGameObject implements ICollision {
                     setFrameNumber(2);
                 }
             }
+
+        if(!isTileOnderSpeler() && !jump) {
+            fall = true;
+        } else if(isTileOnderSpeler()) {
+            fall = false;
+        }
 
 
 
@@ -223,6 +235,16 @@ public class Toad extends GravatiyGameObject implements ICollision {
                     addBannana();
                     banana.remove();
                 }
+                if(g instanceof Monster){
+                    Monster monster = (Monster) g;
+                    if(fall) {
+                        addMonster(monster);
+                        monster.die();
+                    } else if(isTileOnderSpeler()) {
+                        setScore(100);
+
+                    }
+                }
             }
         }
     }
@@ -234,11 +256,20 @@ public class Toad extends GravatiyGameObject implements ICollision {
         this.bananas++;
     }
 
+<<<<<<< HEAD
+    private void addMonster(Monster monster) {
+        this.score++;
+        Log.d("monster", "=" + monster);
+    }
+
+
+=======
     /**
      * handles all collisions with tiles
      * @param collidedTiles List of TileCollision holding all tile collisions in this move.
      *
      */
+>>>>>>> origin/master
     @Override
     public void collisionOccurred(List<TileCollision> collidedTiles) {
         // Do we know for certain that the for-each loop goes through the list
