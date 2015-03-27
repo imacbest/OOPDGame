@@ -272,7 +272,7 @@ public class ToadParcour extends GameEngine {
 
     public void reset(){
 
-        //endGame();
+//        endGame();
     }
 
 }
