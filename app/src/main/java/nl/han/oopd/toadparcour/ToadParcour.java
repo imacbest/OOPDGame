@@ -7,6 +7,7 @@ import android.gameengine.icadroids.engine.Viewport;
 import android.gameengine.icadroids.input.MotionSensor;
 import android.gameengine.icadroids.input.OnScreenButtons;
 import android.gameengine.icadroids.input.TouchInput;
+import android.gameengine.icadroids.sound.MusicPlayer;
 import android.gameengine.icadroids.tiles.GameTiles;
 import android.graphics.Color;
 import android.text.format.Time;
@@ -25,11 +26,6 @@ public class ToadParcour extends GameEngine {
      * MoveableGmeObject vis, player in the game
      */
     private Toad toad;
-
-    /**
-     * sound controler
-     */
-    private SoundController sound;
 
     /**
      * Times for the game
@@ -69,7 +65,7 @@ public class ToadParcour extends GameEngine {
      */
     @Override
     protected void initialize() {
-
+        MusicPlayer.play("lucas", true);
         startTime = System.currentTimeMillis();
 
         setMapDimensions(8705, 2240);

@@ -263,6 +263,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
         // Do we know for certain that the for-each loop goes through the list
         // front to end?
         // If not, we have to use a different iterator!
+
         for (TileCollision tc : collidedTiles){
             if (tc.theTile.getTileType() == 0){
                 moveUpToTileSide(tc);
