@@ -7,7 +7,7 @@ import android.util.Log;
  * @author Thomas
  */
 public class SoundController {
-    // ToDo: fix music class
+    // ToDo: fix music class probbible wont work
     public SoundController(){
         playMusic();
     }

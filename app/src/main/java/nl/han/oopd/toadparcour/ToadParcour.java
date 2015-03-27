@@ -182,6 +182,7 @@ public class ToadParcour extends GameEngine {
         //this.scoreDisplay.setWidgetWidth(20);
         this.scoreDisplay.setWidgetHeight(120);
         this.scoreDisplay.setWidgetBackgroundColor(Color.BLUE);
+        this.scoreDisplay.setTextColor(Color.WHITE);
         this.scoreDisplay.setWidgetX(10);
         this.scoreDisplay.setWidgetY(10);
         // If you want to modify the layout of a dashboard widget,
