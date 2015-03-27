@@ -9,6 +9,7 @@ import android.gameengine.icadroids.input.OnScreenButtons;
 import android.gameengine.icadroids.input.TouchInput;
 import android.gameengine.icadroids.tiles.GameTiles;
 import android.graphics.Color;
+import android.text.format.Time;
 import android.util.Log;
 import android.util.TypedValue;
 
@@ -31,6 +32,13 @@ public class ToadParcour extends GameEngine {
     private SoundController sound;
 
     /**
+     * Times for the game
+     */
+    private long startTime = 0;
+    public Time time;
+
+
+    /**
      * Sets the difficulty of the game
      */
     public static double difficulty = Constants.EASY;
@@ -43,6 +51,17 @@ public class ToadParcour extends GameEngine {
     public ArrayList<Monster> monsters = new ArrayList<>();
     public ArrayList<Coin> coins = new ArrayList<>();
     public ArrayList<Banana> bananas = new ArrayList<>();
+
+    /**
+     * Variable that hold information if the player is on the end point
+     */
+    private boolean isPlayerOnEndPoint = false;
+
+    /**
+     * Variable if the player is game over
+     */
+    private boolean playerGameOver = false;
+
     /**
      * Initialize the game, create objects and level
      *
@@ -51,7 +70,9 @@ public class ToadParcour extends GameEngine {
     @Override
     protected void initialize() {
 
-        setMapDimensions(8705, 2240 );
+        startTime = System.currentTimeMillis();
+
+        setMapDimensions(8705, 2240);
 
         // Set up control mechanisms to use
         TouchInput.use = false;
@@ -163,7 +184,7 @@ public class ToadParcour extends GameEngine {
 
         //this.scoreDisplay.setWidgetWidth(20);
         this.scoreDisplay.setWidgetHeight(120);
-        this.scoreDisplay.setWidgetBackgroundColor(Color.WHITE);
+        this.scoreDisplay.setWidgetBackgroundColor(Color.BLUE);
         this.scoreDisplay.setWidgetX(10);
         this.scoreDisplay.setWidgetY(10);
         // If you want to modify the layout of a dashboard widget,
@@ -216,6 +237,9 @@ public class ToadParcour extends GameEngine {
     @Override
     public void update() {
         super.update();
+        if(isGameTimeUp()){
+            Log.d("Time", "Game time is up");
+        }
 
         Log.d("Pos", "X:" + getPlayer().getX() + "Y:" + getPlayer().getY());
         this.scoreDisplay.setTextString(
@@ -242,4 +266,28 @@ public class ToadParcour extends GameEngine {
         // Determines how quickly viewport moves (see API for details)
         setPlayerPositionTolerance(0.8, 0.5);
     }
+
+    public boolean isPlayerGameOver() {
+        return playerGameOver;
+    }
+
+    public void setPlayerGameOver(boolean playerGameOver) {
+        this.playerGameOver = playerGameOver;
+    }
+
+    public boolean isPlayerOnEndPoint() {
+        return isPlayerOnEndPoint;
+    }
+
+    public void setPlayerOnEndPoint(boolean isPlayerOnEndPoint) {
+        this.isPlayerOnEndPoint = isPlayerOnEndPoint;
+    }
+
+    public boolean isGameTimeUp() {
+        if( System.currentTimeMillis() - this.startTime >= (1000*60) * ToadParcour.difficulty) {
+            return true;
+        }
+        return false;
+    }
+
 }

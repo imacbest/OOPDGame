@@ -49,6 +49,11 @@ public class Toad extends GravatiyGameObject implements ICollision {
     private double prevDirection = Constants.RIGHT;
 
     /**
+     * last time you have thrown a banana
+     */
+    private long prevBanana = 0;
+
+    /**
      * Main toad function
      * @param mygame reffrence to the ToadParcour instance
      */
@@ -106,7 +111,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
         if (OnScreenButtons.dPadRight) {
             if(super.isTileOnderSpeler()) {
                 setxSpeed(8);
-                setySpeed(0);
+                //setySpeed(0);
                 setFrameNumber(0);
             }
             }
@@ -128,10 +133,13 @@ public class Toad extends GravatiyGameObject implements ICollision {
      * Function to throw a bannana, it add's a movebleGameObject
      */
     private void throwBanana() {
-        if (getBananas() != 0) {
-            setBananas(-1);
-            mygame.addGameObject(new FlyingBanana(this, (int)getLookDirection()), (int) getCenterX(), (int) getCenterY()-25);
-            Log.d("Banana", "Banana added");
+        if(System.currentTimeMillis() - prevBanana >= 750) {
+            prevBanana = System.currentTimeMillis();
+            if (getBananas() != 0) {
+                setBananas(-1);
+                mygame.addGameObject(new FlyingBanana(this, (int) getLookDirection()), (int) getCenterX(), (int) getCenterY() - 25);
+                Log.d("Banana", "Banana added");
+            }
         }
     }
 
@@ -263,6 +271,13 @@ public class Toad extends GravatiyGameObject implements ICollision {
             if(tc.theTile.getTileType() == 1){
                 this.setScore(-10);
                 break;
+            }
+            if(tc.theTile.getTileType() == 3){
+                mygame.setPlayerOnEndPoint(true);
+                Log.d("Game", "Player is on endpoint");
+            }else{
+                mygame.setPlayerOnEndPoint(false);
+                Log.d("Game", "Player is NOT endpoint");
             }
         }
     }

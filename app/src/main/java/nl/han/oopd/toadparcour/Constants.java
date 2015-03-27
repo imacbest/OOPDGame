@@ -22,5 +22,5 @@ public interface Constants {
     public static final int DOWN = 180;
     public static final int LEFT = 270;
 
-    public static final int BANANASPEED = 4;
+    public static final int BANANASPEED = 6;
 }
