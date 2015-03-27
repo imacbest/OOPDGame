@@ -87,6 +87,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
         handleCollisions();
         jumping();
 
+
         // Handle input. Both on screen buttons and tilting are supported.
         // Buttons take precedence.
         boolean buttonPressed = false;
@@ -96,7 +97,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
             buttonPressed = true;
         } else if (super.isTileOnderSpeler()) {
             buttonPressed = false;
-            setDirectionSpeed(0, 0);
+            setxSpeed(0);
         }
         if(OnScreenButtons.buttonX){
             throwBanana();
@@ -230,14 +231,14 @@ public class Toad extends GravatiyGameObject implements ICollision {
                     if(fall) {
                         addMonster(monster);
                         monster.die();
-                    } else if(isTileOnderSpeler()) {
+                    }
 
 
                     }
                 }
             }
         }
-    }
+
 
     /**
      * Adds a banana to toad's inventory
@@ -270,14 +271,20 @@ public class Toad extends GravatiyGameObject implements ICollision {
             }
             if(tc.theTile.getTileType() == 1){
                 this.setScore(-10);
+                this.mygame.setPlayerGameOver(true);
+                setySpeed(4);
+                Log.d("Player", "Player is standing on lava");
                 break;
             }
+
             if(tc.theTile.getTileType() == 3){
                 mygame.setPlayerOnEndPoint(true);
                 Log.d("Game", "Player is on endpoint");
+                break;
             }else{
                 mygame.setPlayerOnEndPoint(false);
                 Log.d("Game", "Player is NOT endpoint");
+                break;
             }
         }
     }

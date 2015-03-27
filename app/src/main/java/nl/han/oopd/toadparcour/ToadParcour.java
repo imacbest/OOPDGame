@@ -273,6 +273,7 @@ public class ToadParcour extends GameEngine {
 
     public void setPlayerGameOver(boolean playerGameOver) {
         this.playerGameOver = playerGameOver;
+        Log.d("Game", "Player is game over");
     }
 
     public boolean isPlayerOnEndPoint() {

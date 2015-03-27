@@ -14,6 +14,7 @@ public class GravatiyGameObject extends MoveableGameObject {
      */
     protected void gravity(double kracht){
         if(!isTileOnderSpeler()){
+            //setySpeed(kracht);
             setDirectionSpeed(180, kracht);
         }
 
