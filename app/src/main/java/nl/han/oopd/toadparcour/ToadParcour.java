@@ -7,6 +7,7 @@ import android.gameengine.icadroids.engine.Viewport;
 import android.gameengine.icadroids.input.MotionSensor;
 import android.gameengine.icadroids.input.OnScreenButtons;
 import android.gameengine.icadroids.input.TouchInput;
+import android.gameengine.icadroids.objects.GameObject;
 import android.gameengine.icadroids.sound.MusicPlayer;
 import android.gameengine.icadroids.tiles.GameTiles;
 import android.graphics.Color;
@@ -242,7 +243,7 @@ public class ToadParcour extends GameEngine {
         // Vis will be center screen
         setPlayerPositionOnScreen(Viewport.PLAYER_CENTER, Viewport.PLAYER_CENTER);
         // Determines how quickly viewport moves (see API for details)
-        setPlayerPositionTolerance(0.8, 0.5);
+        setPlayerPositionTolerance(0, .3);
     }
 
     public boolean isPlayerGameOver() {
@@ -267,6 +268,11 @@ public class ToadParcour extends GameEngine {
             return true;
         }
         return false;
+    }
+
+    public void reset(){
+
+        //endGame();
     }
 
 }
