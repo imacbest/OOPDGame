@@ -182,6 +182,7 @@ public class ToadParcour extends GameEngine {
         //this.scoreDisplay.setWidgetWidth(20);
         this.scoreDisplay.setWidgetHeight(120);
         this.scoreDisplay.setWidgetBackgroundColor(Color.BLUE);
+        this.scoreDisplay.setTextColor(Color.WHITE);
         this.scoreDisplay.setWidgetX(10);
         this.scoreDisplay.setWidgetY(10);
         // If you want to modify the layout of a dashboard widget,
@@ -224,7 +225,13 @@ public class ToadParcour extends GameEngine {
         this.scoreDisplay.setTextString(
                 "Score: " + String.valueOf(this.toad.getScore()) +
                 " Coins: " + String.valueOf(this.toad.getCoins())+
+<<<<<<< HEAD
                 " Bananas: " + String.valueOf(this.toad.getBananas()));
+=======
+                " Bananas: " + String.valueOf(this.toad.getBananas()) +
+                " Time: " + (int)(((1000 * ToadParcour.difficulty) - (((System.currentTimeMillis()-startTime) / 1000)))/60)
+        );
+>>>>>>> origin/master
     }
 
     /**
