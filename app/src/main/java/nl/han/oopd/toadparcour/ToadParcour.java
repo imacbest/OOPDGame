@@ -224,7 +224,7 @@ public class ToadParcour extends GameEngine {
         this.scoreDisplay.setTextString(
                 "Score: " + String.valueOf(this.toad.getScore()) +
                 " Coins: " + String.valueOf(this.toad.getCoins())+
-                "Bananas: " + String.valueOf(this.toad.getBananas()));
+                " Bananas: " + String.valueOf(this.toad.getBananas()));
     }
 
     /**
