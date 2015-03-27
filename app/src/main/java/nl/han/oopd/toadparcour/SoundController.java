@@ -13,7 +13,7 @@ public class SoundController {
     }
 
     public void playMusic() {
-        MusicPlayer.play("lucas", true);
+        MusicPlayer.play("toadparcourtune", true);
         Log.d("Music", "Play");
     }
 

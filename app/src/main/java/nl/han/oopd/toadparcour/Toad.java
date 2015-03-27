@@ -265,12 +265,13 @@ public class Toad extends GravatiyGameObject implements ICollision {
         // If not, we have to use a different iterator!
 
         for (TileCollision tc : collidedTiles){
+            Log.d("Tile", "The type is: " + tc.theTile.getTileType());
             if (tc.theTile.getTileType() == 0){
                 moveUpToTileSide(tc);
                 setSpeed(0);
                 break;
             }
-            if(tc.theTile.getTileType() == 1){
+            if(tc.theTile.getTileType() == 1 || tc.theTile.getTileType() == 6){
                 this.setScore(-10);
                 this.mygame.setPlayerGameOver(true);
                 setySpeed(4);
