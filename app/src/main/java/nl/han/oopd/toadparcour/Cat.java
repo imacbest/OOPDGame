@@ -13,7 +13,7 @@ public class Cat extends Monster {
      */
     public Cat(MoveableGameObject target, int range, int speed) {
         super(target, range, speed);
-        setSprite("cat");
+        setSprite("cat", 2);
     }
 
     public void update(){
