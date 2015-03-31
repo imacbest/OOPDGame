@@ -6,6 +6,8 @@ import android.gameengine.icadroids.input.OnScreenButtons;
 import android.gameengine.icadroids.objects.GameObject;
 import android.gameengine.icadroids.objects.collisions.ICollision;
 import android.gameengine.icadroids.objects.collisions.TileCollision;
+import android.gameengine.icadroids.sound.GameSound;
+import android.gameengine.icadroids.sound.MusicPlayer;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -103,7 +105,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
             throwBanana();
         }
         if(OnScreenButtons.buttonY){
-            mygame.reset();
+           this.die();
         }
 
         if (OnScreenButtons.buttonA && !jump && super.isTileOnderSpeler()) {
@@ -344,7 +346,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
 
     /**
-     * Functiont to determine at wich direction toad is looking
+     * Function to determine at which direction toad is looking
      * @return direction
      */
     public double getLookDirection() {
@@ -359,6 +361,17 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }else{
             return prevDirection;
         }
+
+    }
+
+    /**
+     * Function that handles the death event of Toad
+     */
+    public void die(){
+        GameSound sound = new GameSound();
+        MusicPlayer.stop();
+        sound.addSound(1, "toaddeath");
+        sound.playSound(1, 1);
 
     }
 }
