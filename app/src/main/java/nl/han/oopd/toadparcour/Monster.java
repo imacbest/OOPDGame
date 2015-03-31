@@ -60,6 +60,7 @@ public abstract class Monster extends GravatiyGameObject implements IScore, ICol
      * This function also makes the monster look the right way
      */
     public void move(){
+        gravity(9);
         timeCounter++;
         if (timeCounter % 4 == 0) {
             if(isInRange()) {
@@ -98,7 +99,7 @@ public abstract class Monster extends GravatiyGameObject implements IScore, ICol
      */
     @Override
     public void collisionOccurred(List<TileCollision> collidedTiles) {
-        bounce(collidedTiles.get(0));
+        //bounce(collidedTiles.get(0));
     }
 
 

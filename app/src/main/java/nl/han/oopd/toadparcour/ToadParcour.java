@@ -16,6 +16,7 @@ import android.util.Log;
 import android.util.TypedValue;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * The main charactar of the game
@@ -121,16 +122,29 @@ public class ToadParcour extends GameEngine {
     private void loadMonsters(){
 
         int[][] monsterCoord = new int[][]{
-                {500, 2100},
-                {600, 2128},
-                {650, 2128},
-                {700, 2128}
+                {500, 2100}, //2128
+                {600, 2100},
+                {650, 2100},
+                {700, 2100}
         };
-        monsters.add(new Cat(toad, Constants.CATRANGE, Constants.CATSPEED));
-        monsters.add(new Turtle(toad, Constants.TURTLERANGE, Constants.TURTLESPEED));
-        monsters.add(new Turtle(toad, Constants.TURTLERANGE, Constants.TURTLESPEED));
-        monsters.add(new Princess(toad, Constants.PRINCESSERANGE, Constants.PRINCESSESPEED));
+        Random r = new Random();
         for(int i = 0; i < monsterCoord.length; i++){
+            int random = r.nextInt(3);
+            switch(random){
+                case 0:
+                    monsters.add(new Cat(toad, Constants.CATRANGE, Constants.CATSPEED));
+                    break;
+                case 1:
+                    monsters.add(new Turtle(toad, Constants.TURTLERANGE, Constants.TURTLESPEED));
+                    break;
+                case 2:
+                    monsters.add(new Princess(toad, Constants.PRINCESSERANGE, Constants.PRINCESSESPEED));
+                    break;
+            }
+        }
+        for(int i = 0; i < monsters.size(); i++){
+            Log.d("Monster", "height: " + monsters.get(i).getFrameHeight());
+
             addGameObject(monsters.get(i), monsterCoord[i][0], monsterCoord[i][1]);
             Log.d("Game", "Monster created!");
         }
@@ -226,8 +240,12 @@ public class ToadParcour extends GameEngine {
                 "Score: " + String.valueOf(this.toad.getScore()) +
                 " Coins: " + String.valueOf(this.toad.getCoins())+
                 " Bananas: " + String.valueOf(this.toad.getBananas()) +
-                " Time: " + (int)(((1000 * ToadParcour.difficulty) - (((System.currentTimeMillis()-startTime) / 1000)))/60)
+                " Time: " + getTime()
         );
+    }
+
+    private int getTime() {
+        return (int)( ((60*ToadParcour.difficulty) - (System.currentTimeMillis()-startTime)/1000) );
     }
 
     /**
