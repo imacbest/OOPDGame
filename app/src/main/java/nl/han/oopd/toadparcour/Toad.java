@@ -222,7 +222,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
             for (GameObject g : gebotst) {
                 if(g instanceof Coin){
                     Coin coin = (Coin) g;
-                    this.setCoins((this.getCoins()+1));
+                    this.addCoin();
                     this.setScore(10);
                     coin.remove();
                 }
@@ -302,6 +302,13 @@ public class Toad extends GravatiyGameObject implements ICollision {
      */
     public int getCoins() {
         return coins;
+    }
+
+    /**
+     * adds one coin
+     */
+    private void addCoin(){
+        this.coins++;
     }
 
     /**

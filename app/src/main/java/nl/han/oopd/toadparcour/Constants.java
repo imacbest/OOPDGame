@@ -7,7 +7,7 @@ package nl.han.oopd.toadparcour;
 public interface Constants {
     public static final double EASY = 2.5;
     public static final double MEDIUM = 2;
-    public static final double HARD = 1;
+    public static final double HARD = .1;
 
     public static final int TURTLERANGE = 200;
     public static final int PRINCESSERANGE = 300;

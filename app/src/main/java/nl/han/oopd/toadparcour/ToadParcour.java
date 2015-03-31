@@ -39,12 +39,17 @@ public class ToadParcour extends GameEngine {
     /**
      * Sets the difficulty of the game
      */
-    public static double difficulty = Constants.EASY;
+    public static double difficulty = Constants.HARD;
 
     /**
      * Dashboard for displaying the score
      */
     private DashboardTextView scoreDisplay;
+
+    /**
+     * Dashboard for when the game is finished
+     */
+    private DashboardTextView gameOverDisplay;
 
     public ArrayList<Monster> monsters = new ArrayList<>();
     public ArrayList<Coin> coins = new ArrayList<>();
@@ -108,12 +113,18 @@ public class ToadParcour extends GameEngine {
         scoreDisplay.setTextColor(Color.BLACK);
         addToDashboard(scoreDisplay);
 
+        gameOverDisplay = new DashboardTextView(this);
+        gameOverDisplay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
+        gameOverDisplay.setTextColor(Color.BLACK);
+        addToDashboard(gameOverDisplay);
+
 //        // Example of how to add an image to the dashboard.
 //
 //        DashboardImageView imageDisplay = new DashboardImageView(this, "bg");
 //        addToDashboard(imageDisplay);
 
         createDashboard();
+        createGameOverDisplay();
     }
 
     /**
@@ -243,6 +254,32 @@ public class ToadParcour extends GameEngine {
         });
     }
 
+    private void createGameOverDisplay(){
+        //this.scoreDisplay.setWidgetWidth(20);
+        this.gameOverDisplay.setWidgetHeight(120);
+        this.gameOverDisplay.setWidgetBackgroundColor(Color.BLUE);
+        this.gameOverDisplay.setTextColor(Color.WHITE);
+        this.gameOverDisplay.setWidgetX(960);
+        this.gameOverDisplay.setWidgetY(540 );
+        // If you want to modify the layout of a dashboard widget,
+        // you need to so so using its run method.
+    }
+    private void runGameOverDisplay(){
+        this.gameOverDisplay.run(new Runnable(){
+            public void run() {
+                gameOverDisplay.setPadding(10, 10, 10, 10);
+            }
+        });
+        String showText = "";
+        if(this.isPlayerOnEndPoint()){
+            showText = "You have won the game!";
+        }else{
+            showText = "You lost!";
+        }
+        this.gameOverDisplay.setTextString(showText);
+        Log.d("GameOver", "Shown text");
+    }
+
     /**
      * Create background with tiles
      */
@@ -267,6 +304,7 @@ public class ToadParcour extends GameEngine {
     public void update() {
         super.update();
         if(isGameTimeUp()){
+            //runGameOverDisplay(); //ToDo: game over display?
             Log.d("Time", "Game time is up");
         }
 
@@ -319,6 +357,10 @@ public class ToadParcour extends GameEngine {
         this.isPlayerOnEndPoint = isPlayerOnEndPoint;
     }
 
+    /**
+     * Checks if the game time is over or not
+     * @return boolean
+     */
     public boolean isGameTimeUp() {
         if( System.currentTimeMillis() - this.startTime >= (1000*60) * ToadParcour.difficulty) {
             return true;
