@@ -84,26 +84,13 @@ public class ToadParcour extends GameEngine {
 
         createTileEnvironment();
 
-
-
         toad = new Toad(this);
         addGameObject(toad, 160, 2110);
-
-
-
 
         loadMonsters();
         loadCoins();
         loadBananas();
 
-//        for(int i = 0; i < 1; i++){
-//            monsters.add(new Monster(vis));
-//            Log.d("Monster", "Monster " + i + " gemaakt");
-//            addGameObject(monsters.get(i), 480 + (i * 10), 240 + (i * 10));
-//        }
-
-//		Monster engerd =   new Monster(vis);
-//		addGameObject(engerd, 480, 240);
         createViewPort(toad, 2f);
 
 
@@ -113,18 +100,13 @@ public class ToadParcour extends GameEngine {
         scoreDisplay.setTextColor(Color.BLACK);
         addToDashboard(scoreDisplay);
 
-        gameOverDisplay = new DashboardTextView(this);
-        gameOverDisplay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
-        gameOverDisplay.setTextColor(Color.BLACK);
-        addToDashboard(gameOverDisplay);
-
-//        // Example of how to add an image to the dashboard.
-//
-//        DashboardImageView imageDisplay = new DashboardImageView(this, "bg");
-//        addToDashboard(imageDisplay);
+//        gameOverDisplay = new DashboardTextView(this);
+//        gameOverDisplay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
+//        gameOverDisplay.setTextColor(Color.BLACK);
+//        addToDashboard(gameOverDisplay);
 
         createDashboard();
-        createGameOverDisplay();
+        //createGameOverDisplay();
     }
 
     /**
@@ -263,13 +245,14 @@ public class ToadParcour extends GameEngine {
         this.gameOverDisplay.setWidgetY(540 );
         // If you want to modify the layout of a dashboard widget,
         // you need to so so using its run method.
-    }
-    private void runGameOverDisplay(){
         this.gameOverDisplay.run(new Runnable(){
             public void run() {
                 gameOverDisplay.setPadding(10, 10, 10, 10);
             }
         });
+    }
+    private void runGameOverDisplay(){
+
         String showText = "";
         if(this.isPlayerOnEndPoint()){
             showText = "You have won the game!";
@@ -369,7 +352,6 @@ public class ToadParcour extends GameEngine {
     }
 
     public void reset(){
-
 //        endGame();
     }
 
