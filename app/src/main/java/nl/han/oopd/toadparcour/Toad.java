@@ -297,6 +297,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 this.setScore(-10);
                 this.mygame.setPlayerGameOver(true);
                 setySpeed(4);
+                setxSpeed(0);
                 Log.d("Player", "Player is standing on lava");
                 break;
             }
