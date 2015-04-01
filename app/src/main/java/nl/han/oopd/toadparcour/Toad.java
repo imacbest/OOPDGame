@@ -251,6 +251,9 @@ public class Toad extends GravatiyGameObject implements ICollision {
                     if(fall) {
                         addMonster(monster);
                         monster.die();
+                        setScore(10);
+                    } else {
+                        setMinScore(-10);
                     }
 
 
@@ -350,11 +353,23 @@ public class Toad extends GravatiyGameObject implements ICollision {
     }
 
     /**
-     * Let's you set the score, even below zero
+     * Let's you set the score
      * @param score
      */
     public void setScore(int score) {
-        this.score += (score * (int)ToadParcour.difficulty);
+        this.score += (score * (int) ToadParcour.difficulty);
+    }
+
+    /**
+     * Let's delete some score
+     * @param score
+     */
+    public void setMinScore(int score) {
+        if(this.score >= score) {
+            this.score += (score * (int) ToadParcour.difficulty);
+        } else if (this.score <= score) {
+            this.score = 0;
+        }
     }
 
     /**

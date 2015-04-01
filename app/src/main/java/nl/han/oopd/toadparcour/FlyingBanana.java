@@ -71,7 +71,7 @@ public class FlyingBanana extends GravatiyGameObject implements ICollision {
                 if(g instanceof Monster){
                     ((Monster) g).die();
                     this.remove();
-                    toad.setScore(20);
+                    toad.setScore(10);
                     Log.d("Monster", "Monster destroyed");
                 }
             }
