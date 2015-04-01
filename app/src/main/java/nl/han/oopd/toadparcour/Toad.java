@@ -396,6 +396,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
         MusicPlayer.stop();
         sound.addSound(1, "toaddeath");
         sound.playSound(1, 1);
+        deleteThisGameObject();
 
     }
 }

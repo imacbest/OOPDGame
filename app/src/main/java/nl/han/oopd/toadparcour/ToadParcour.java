@@ -296,7 +296,7 @@ public class ToadParcour extends GameEngine {
         this.gameOverDisplay.setWidgetHeight(120);
         this.gameOverDisplay.setWidgetBackgroundColor(Color.TRANSPARENT);
         this.gameOverDisplay.setTextColor(Color.WHITE);
-        this.gameOverDisplay.setWidgetX(5-scoreDisplay.getWidth());
+        this.gameOverDisplay.setWidgetX(-350);
         this.gameOverDisplay.setWidgetY(350);
         // If you want to modify the layout of a dashboard widget,
         // you need to so so using its run method.
@@ -305,6 +305,7 @@ public class ToadParcour extends GameEngine {
                 gameOverDisplay.setPadding(10, 10, 10, 10);
             }
         });
+        toad.die();
     }
     private void runGameOverDisplay(){
 
