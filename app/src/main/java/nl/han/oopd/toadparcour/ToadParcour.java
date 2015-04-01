@@ -8,6 +8,7 @@ import android.gameengine.icadroids.input.MotionSensor;
 import android.gameengine.icadroids.input.OnScreenButtons;
 import android.gameengine.icadroids.input.TouchInput;
 import android.gameengine.icadroids.objects.GameObject;
+import android.gameengine.icadroids.sound.GameSound;
 import android.gameengine.icadroids.sound.MusicPlayer;
 import android.gameengine.icadroids.tiles.GameTiles;
 import android.graphics.Color;
@@ -51,9 +52,9 @@ public class ToadParcour extends GameEngine {
      */
     private DashboardTextView gameOverDisplay;
 
-    public ArrayList<Monster> monsters = new ArrayList<>();
-    public ArrayList<Coin> coins = new ArrayList<>();
-    public ArrayList<Banana> bananas = new ArrayList<>();
+    public ArrayList<Monster> monsters;
+    public ArrayList<Coin> coins;
+    public ArrayList<Banana> bananas;
 
     /**
      * Variable that hold information if the player is on the end point
@@ -64,6 +65,9 @@ public class ToadParcour extends GameEngine {
      * Variable if the player is game over
      */
     private boolean playerGameOver = false;
+
+
+    private boolean methodAlreadyCalled =false;
 
     /**
      * Initialize the game, create objects and level
@@ -94,19 +98,23 @@ public class ToadParcour extends GameEngine {
         createViewPort(toad, 2f);
 
 
-        // Example of how to add a Dashboard to a game
-        scoreDisplay = new DashboardTextView(this);
-        scoreDisplay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
-        scoreDisplay.setTextColor(Color.BLACK);
-        addToDashboard(scoreDisplay);
+        if(!methodAlreadyCalled) {
+            // Example of how to add a Dashboard to a game
+            scoreDisplay = new DashboardTextView(this);
+            scoreDisplay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
+            scoreDisplay.setTextColor(Color.BLACK);
+            addToDashboard(scoreDisplay);
+            createDashboard();
+        }
+
 
         gameOverDisplay = new DashboardTextView(this);
         gameOverDisplay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
         gameOverDisplay.setTextColor(Color.BLACK);
         addToDashboard(gameOverDisplay);
 
-        createDashboard();
         createGameOverDisplay();
+        methodAlreadyCalled = true;
     }
 
     /**
@@ -145,6 +153,10 @@ public class ToadParcour extends GameEngine {
                 {4850, 1616}
         };
         Random r = new Random();
+        monsters = new ArrayList<>();
+        deleteAllGameObjectsOfType(Turtle.class);
+        deleteAllGameObjectsOfType(Cat.class);
+        deleteAllGameObjectsOfType(Princess.class);
         for(int i = 0; i < monsterCoord.length; i++){
             int random = r.nextInt(3);
             switch(random){
@@ -172,6 +184,7 @@ public class ToadParcour extends GameEngine {
      * creates and loads all bananas
      */
     private void loadBananas() {
+        deleteAllGameObjectsOfType(Banana.class);
         int[][] bananaArray = new int[][]{
                 {900, 1936},
                 {1231, 1936},
@@ -206,7 +219,7 @@ public class ToadParcour extends GameEngine {
                 {5650, 1744},
                 {5850, 1744}
         };
-
+        bananas = new ArrayList<>();
         for(int i = 0; i < bananaArray.length; i++) {
             bananas.add(new Banana());
             addGameObject(bananas.get(i), bananaArray[i][0], bananaArray[i][1]);
@@ -218,6 +231,7 @@ public class ToadParcour extends GameEngine {
      * creates and loads all coins
      */
     private void loadCoins() {
+        deleteAllGameObjectsOfType(Coin.class);
         int[][] coinArray = new int[][]{
                 {3008, 1808},
                 {2947, 1872},
@@ -310,7 +324,7 @@ public class ToadParcour extends GameEngine {
                 {7200, 1552},
                 {7300, 1552}
         };
-
+        coins = new ArrayList<>();
         for(int i = 0; i < coinArray.length; i++) {
             coins.add(new Coin());
             addGameObject(coins.get(i), coinArray[i][0], coinArray[i][1]);
@@ -409,10 +423,22 @@ public class ToadParcour extends GameEngine {
                 " Bananas: " + String.valueOf(this.toad.getBananas()) +
                 " Time: " + getTime()
         );
+
+
+        // reset game
+        if(OnScreenButtons.buttonY){
+            toad.die();
+            reset();
+        }
+
     }
 
     private int getTime() {
-        return (int)( ((60*ToadParcour.difficulty) - (System.currentTimeMillis()-startTime)/1000) );
+        int time = (int)( ((60*ToadParcour.difficulty) - (System.currentTimeMillis()-startTime)/1000) );
+        if(time > 0){
+            return time;
+        }
+        return 0;
     }
 
     /**
@@ -463,7 +489,9 @@ public class ToadParcour extends GameEngine {
     }
 
     public void reset(){
-//        endGame();
+        toad.deleteThisGameObject();
+        GameSound.stopSounds();
+        initialize();
     }
 
 }
