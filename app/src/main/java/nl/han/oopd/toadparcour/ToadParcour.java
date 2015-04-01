@@ -100,13 +100,13 @@ public class ToadParcour extends GameEngine {
         scoreDisplay.setTextColor(Color.BLACK);
         addToDashboard(scoreDisplay);
 
-//        gameOverDisplay = new DashboardTextView(this);
-//        gameOverDisplay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
-//        gameOverDisplay.setTextColor(Color.BLACK);
-//        addToDashboard(gameOverDisplay);
+        gameOverDisplay = new DashboardTextView(this);
+        gameOverDisplay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
+        gameOverDisplay.setTextColor(Color.BLACK);
+        addToDashboard(gameOverDisplay);
 
         createDashboard();
-        //createGameOverDisplay();
+        createGameOverDisplay();
     }
 
     /**
@@ -340,12 +340,11 @@ public class ToadParcour extends GameEngine {
     }
 
     private void createGameOverDisplay(){
-        //this.scoreDisplay.setWidgetWidth(20);
         this.gameOverDisplay.setWidgetHeight(120);
-        this.gameOverDisplay.setWidgetBackgroundColor(Color.BLUE);
+        this.gameOverDisplay.setWidgetBackgroundColor(Color.TRANSPARENT);
         this.gameOverDisplay.setTextColor(Color.WHITE);
-        this.gameOverDisplay.setWidgetX(960);
-        this.gameOverDisplay.setWidgetY(540 );
+        this.gameOverDisplay.setWidgetX(5-scoreDisplay.getWidth());
+        this.gameOverDisplay.setWidgetY(350);
         // If you want to modify the layout of a dashboard widget,
         // you need to so so using its run method.
         this.gameOverDisplay.run(new Runnable(){
@@ -358,8 +357,11 @@ public class ToadParcour extends GameEngine {
 
         String showText = "";
         if(this.isPlayerOnEndPoint()){
+            this.gameOverDisplay.setWidgetBackgroundColor(Color.GREEN);
+
             showText = "You have won the game!";
         }else{
+            this.gameOverDisplay.setWidgetBackgroundColor(Color.RED);
             showText = "You lost!";
         }
         this.gameOverDisplay.setTextString(showText);
@@ -389,7 +391,7 @@ public class ToadParcour extends GameEngine {
     public void update() {
         super.update();
         if(isGameTimeUp()){
-            //runGameOverDisplay(); //ToDo: game over display?
+            runGameOverDisplay(); //ToDo: game over display?
             Log.d("Time", "Game time is up");
         }
 
