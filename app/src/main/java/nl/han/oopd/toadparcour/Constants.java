@@ -11,7 +11,7 @@ public interface Constants {
 
     public static final int TURTLERANGE = 200;
     public static final int PRINCESSERANGE = 300;
-    public static final int CATRANGE = 500;
+    public static final int CATRANGE = 400;
 
     public static final int TURTLESPEED = 2;
     public static final int PRINCESSESPEED = 4;
@@ -22,5 +22,5 @@ public interface Constants {
     public static final int DOWN = 180;
     public static final int LEFT = 270;
 
-    public static final int BANANASPEED = 6;
+    public static final int BANANASPEED = 10;
 }
