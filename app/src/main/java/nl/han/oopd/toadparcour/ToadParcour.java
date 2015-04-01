@@ -352,7 +352,7 @@ public class ToadParcour extends GameEngine {
                 gameOverDisplay.setPadding(10, 10, 10, 10);
             }
         });
-        toad.die();
+
     }
     private void runGameOverDisplay(){
 
@@ -366,6 +366,7 @@ public class ToadParcour extends GameEngine {
             showText = "You lost!";
         }
         this.gameOverDisplay.setTextString(showText);
+        toad.die();
         Log.d("GameOver", "Shown text");
     }
 
