@@ -75,6 +75,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
      */
     public Toad(ToadParcour mygame) {
         this.mygame = mygame;
+        this.toadDied = false;
         setSprite("toad", 4); // img of the character
         setFriction(1);
 
@@ -391,15 +392,19 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
     }
 
+    private boolean toadDied = false;
+
     /**
      * Function that handles the death event of Toad
      */
     public void die(){
-        GameSound sound = new GameSound();
-        MusicPlayer.stop();
-        sound.addSound(1, "toaddeath");
-        sound.playSound(1, 1);
-        deleteThisGameObject();
-
+        if(!toadDied) {
+            GameSound sound = new GameSound();
+            MusicPlayer.stop();
+            sound.addSound(1, "toaddeath");
+            sound.playSound(1, 1);
+            deleteThisGameObject();
+            toadDied = true;
+        }
     }
 }
