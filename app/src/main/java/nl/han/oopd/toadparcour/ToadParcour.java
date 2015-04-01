@@ -348,7 +348,7 @@ public class ToadParcour extends GameEngine {
             Log.d("Time", "Game time is up");
         }
 
-        Log.d("Pos", "X:" + getPlayer().getX() + "Y:" + getPlayer().getY());
+        Log.d("Pos", "X:" + getPlayer().getX() + " Y:" + getPlayer().getY());
         this.scoreDisplay.setTextString(
                 "Score: " + String.valueOf(this.toad.getScore()) +
                 " Coins: " + String.valueOf(this.toad.getCoins())+

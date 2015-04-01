@@ -39,10 +39,24 @@ public class Toad extends GravatiyGameObject implements ICollision {
      */
     private int score = 0;
 
-    // ToDo: max wat doen deze variabelen? Javadoc toevoeg :)
+    /**
+     * Set the hight of Toad when he is jumping or falling
+     */
     private int start = 0;
+
+    /**
+     * Set the gravity number
+     */
     private double kracht = 6.5;
+
+    /**
+     * Register of there is a jump
+     */
     private boolean jump = false;
+
+    /**
+     * Register of there is a fall, after a jump
+     */
     private boolean fall = false;
 
     /**
@@ -80,7 +94,6 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
     /**
      * update function
-     * ToDo: clean up this update function (MAX)
      */
     @Override
     public void update() {
@@ -114,10 +127,12 @@ public class Toad extends GravatiyGameObject implements ICollision {
             kracht = 6.5;
         }
 
+        /**
+         * Register a walk if the player is on a tile(left or right)
+         */
         if (OnScreenButtons.dPadRight) {
             if(super.isTileOnderSpeler()) {
                 setxSpeed(8);
-                //setySpeed(0);
                 setFrameNumber(0);
             }
             }
@@ -189,8 +204,10 @@ public class Toad extends GravatiyGameObject implements ICollision {
             }
         }
 
-
-
+        /**
+         * Function to let Toad fall on a natural way. De snelheid wordt steeds hoger. Wanneer
+         * Toad op een tile staat. Dan stop de fall en kan Toad weer opnieuw gaan springen.
+         */
         if (fall) {
             kracht = 0;
             if (getY() - start >= 10) {
