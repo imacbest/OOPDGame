@@ -361,9 +361,12 @@ public class ToadParcour extends GameEngine {
             this.gameOverDisplay.setWidgetBackgroundColor(Color.GREEN);
 
             showText = "You have won the game!";
-        }else{
+        }else if(!isPlayerGameOver()){
             this.gameOverDisplay.setWidgetBackgroundColor(Color.RED);
             showText = "You lost!";
+        }else{
+            this.gameOverDisplay.setWidgetBackgroundColor(Color.RED);
+            showText = "You lost! You died";
         }
         this.gameOverDisplay.setTextString(showText);
         toad.die();
@@ -393,8 +396,10 @@ public class ToadParcour extends GameEngine {
     public void update() {
         super.update();
         if(isGameTimeUp()){
-            runGameOverDisplay(); //ToDo: game over display?
+            runGameOverDisplay();
             Log.d("Time", "Game time is up");
+        }else if (isPlayerGameOver()){
+            runGameOverDisplay();
         }
 
         Log.d("Pos", "X:" + getPlayer().getX() + " Y:" + getPlayer().getY());

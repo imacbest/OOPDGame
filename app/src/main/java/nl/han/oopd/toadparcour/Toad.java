@@ -293,14 +293,16 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 setSpeed(0);
                 break;
             }
-            if(tc.theTile.getTileType() == 1 || tc.theTile.getTileType() == 6){
-                this.setScore(-10);
-                this.mygame.setPlayerGameOver(true);
+            if((tc.theTile.getTileType() == 1) || (tc.theTile.getTileType() == 6)){
                 setySpeed(4);
                 setxSpeed(0);
                 Log.d("Player", "Player is standing on lava");
+                if(tc.theTile.getTileType() == 1) {
+                    this.mygame.setPlayerGameOver(true);
+                }
                 break;
             }
+
 
             if(tc.theTile.getTileType() == 3){
                 mygame.setPlayerOnEndPoint(true);

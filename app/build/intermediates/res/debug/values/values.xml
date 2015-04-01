@@ -3,6 +3,6 @@
     <!-- From: file:/C:/Users/Thomas/Dropbox/HAN/OOPD/OOPDGame/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
-    <string name="app_name">ICA_DROID</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Toad Parcour</string>
+    <string name="hello_world">Hello toad!!</string>
 </resources>

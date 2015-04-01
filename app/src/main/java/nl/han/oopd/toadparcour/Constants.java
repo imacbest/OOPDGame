@@ -15,7 +15,7 @@ public interface Constants {
 
     public static final int TURTLESPEED = 2;
     public static final int PRINCESSESPEED = 4;
-    public static final int CATSPEED = 8;
+    public static final int CATSPEED = 5;
 
     public static final int UP = 0;
     public static final int RIGHT = 90;
