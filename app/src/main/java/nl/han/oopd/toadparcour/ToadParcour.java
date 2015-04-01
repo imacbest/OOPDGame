@@ -489,7 +489,9 @@ public class ToadParcour extends GameEngine {
     }
 
     public void reset(){
-        toad.deleteThisGameObject();
+        if(!isPlayerGameOver()){
+            toad.die();
+        }
         GameSound.stopSounds();
         initialize();
     }
