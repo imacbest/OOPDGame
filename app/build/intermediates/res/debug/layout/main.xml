@@ -10,4 +10,8 @@
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
 
+<<<<<<< HEAD
 </LinearLayout><!-- From: file:/C:/Users/Thomas/Dropbox/HAN/OOPD/OOPDGame/app/src/main/res/layout/main.xml -->
+=======
+</LinearLayout><!-- From: file:/Users/maxgroenendijk/OneDrive/HAN/OOPD/OOPDGame2/app/src/main/res/layout/main.xml -->
+>>>>>>> 7bb41feb34b5c9986fc07628e6121fb4455832f2
