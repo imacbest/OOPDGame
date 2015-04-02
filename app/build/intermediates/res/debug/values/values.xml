@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<<<<<<< HEAD
     <!-- From: file:/C:/Users/Thomas/Dropbox/HAN/OOPD/OOPDGame/app/src/main/res/values/strings.xml -->
-=======
-    <!-- From: file:/Users/maxgroenendijk/OneDrive/HAN/OOPD/OOPDGame2/app/src/main/res/values/strings.xml -->
->>>>>>> 7bb41feb34b5c9986fc07628e6121fb4455832f2
     <eat-comment/>
     <string name="action_settings">Settings</string>
     <string name="app_name">Toad Parcour</string>
