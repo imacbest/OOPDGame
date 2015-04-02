@@ -33,6 +33,7 @@ public class Coin extends Items {
     /**
      * makes the perfect turning animation possible :D
      */
+    @Override
     public void turn() {
         if(timeCounterFast % 4 == 0) {
             setFrameNumber(timeCounter % 4);

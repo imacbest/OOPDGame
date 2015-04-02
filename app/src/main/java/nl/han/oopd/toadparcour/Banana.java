@@ -28,6 +28,7 @@ public class Banana extends Items {
     /**
      * Loops through the animation
      */
+    @Override
     public void turn() {
         if(timeCounterFast % 4 == 0) {
             setFrameNumber(timeCounter % 8);

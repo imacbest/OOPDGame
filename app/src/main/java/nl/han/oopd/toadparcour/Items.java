@@ -6,7 +6,7 @@ import android.gameengine.icadroids.objects.GameObject;
  * Creating the Items in the game
  * @author Thomas Kool & Max Groenendijk
  */
-public class Items extends GameObject implements IScore {
+public abstract class Items extends GameObject implements IScore {
     /**
      * points
      */
@@ -18,5 +18,7 @@ public class Items extends GameObject implements IScore {
     public void remove(){
         deleteThisGameObject();
     }
+
+    public abstract void turn();
 
 }
