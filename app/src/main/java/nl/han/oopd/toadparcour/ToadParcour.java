@@ -7,7 +7,6 @@ import android.gameengine.icadroids.engine.Viewport;
 import android.gameengine.icadroids.input.MotionSensor;
 import android.gameengine.icadroids.input.OnScreenButtons;
 import android.gameengine.icadroids.input.TouchInput;
-import android.gameengine.icadroids.objects.GameObject;
 import android.gameengine.icadroids.sound.GameSound;
 import android.gameengine.icadroids.sound.MusicPlayer;
 import android.gameengine.icadroids.tiles.GameTiles;
@@ -167,7 +166,7 @@ public class ToadParcour extends GameEngine {
                     monsters.add(new Turtle(toad, Constants.TURTLERANGE, Constants.TURTLESPEED));
                     break;
                 case 2:
-                    monsters.add(new Princess(toad, Constants.PRINCESSERANGE, Constants.PRINCESSESPEED));
+                    monsters.add(new Princess(toad, Constants.PRINCESSERANGE, Constants.PRINCESSSESPEED));
                     break;
             }
         }
@@ -419,14 +418,10 @@ public class ToadParcour extends GameEngine {
         Log.d("Pos", "X:" + getPlayer().getX() + " Y:" + getPlayer().getY());
         this.scoreDisplay.setTextString(
                 "Score: " + String.valueOf(this.toad.getScore()) +
-                " Coins: " + String.valueOf(this.toad.getCoins())+
-                " Bananas: " + String.valueOf(this.toad.getBananas()) +
-                " Time: " + getTime()
+                        " Coins: " + String.valueOf(this.toad.getCoins()) +
+                        " Bananas: " + String.valueOf(this.toad.getBananas()) +
+                        " Time: " + getTime()
         );
-<<<<<<< HEAD
-=======
-
-
         // reset game
         if(OnScreenButtons.buttonY){
             toad.die();
@@ -441,7 +436,6 @@ public class ToadParcour extends GameEngine {
             return time;
         }
         return 0;
->>>>>>> cac404615d164aef381521370b9b1d4d20bee464
     }
 
     /**

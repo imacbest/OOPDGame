@@ -75,7 +75,7 @@ public abstract class Monster extends GravatiyGameObject implements IScore, ICol
         }else{
             setFrameNumber(0);
         }
-    };
+    }
 
     /**
      * Removes the monster from the game

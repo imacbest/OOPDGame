@@ -22,8 +22,4 @@ public class Cat extends Monster {
         super.move();
     }
 
-    @Override
-    public void move() {
-    }
-
 }
