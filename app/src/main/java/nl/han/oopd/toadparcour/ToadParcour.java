@@ -8,6 +8,7 @@ import android.gameengine.icadroids.input.MotionSensor;
 import android.gameengine.icadroids.input.OnScreenButtons;
 import android.gameengine.icadroids.input.TouchInput;
 import android.gameengine.icadroids.objects.GameObject;
+import android.gameengine.icadroids.sound.GameSound;
 import android.gameengine.icadroids.sound.MusicPlayer;
 import android.gameengine.icadroids.tiles.GameTiles;
 import android.graphics.Color;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.util.TypedValue;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * The main charactar of the game
@@ -38,16 +40,21 @@ public class ToadParcour extends GameEngine {
     /**
      * Sets the difficulty of the game
      */
-    public static double difficulty = Constants.EASY;
+    public static double difficulty = Constants.MEDIUM;
 
     /**
      * Dashboard for displaying the score
      */
     private DashboardTextView scoreDisplay;
 
-    public ArrayList<Monster> monsters = new ArrayList<>();
-    public ArrayList<Coin> coins = new ArrayList<>();
-    public ArrayList<Banana> bananas = new ArrayList<>();
+    /**
+     * Dashboard for when the game is finished
+     */
+    private DashboardTextView gameOverDisplay;
+
+    public ArrayList<Monster> monsters;
+    public ArrayList<Coin> coins;
+    public ArrayList<Banana> bananas;
 
     /**
      * Variable that hold information if the player is on the end point
@@ -58,6 +65,9 @@ public class ToadParcour extends GameEngine {
      * Variable if the player is game over
      */
     private boolean playerGameOver = false;
+
+
+    private boolean methodAlreadyCalled =false;
 
     /**
      * Initialize the game, create objects and level
@@ -78,41 +88,33 @@ public class ToadParcour extends GameEngine {
 
         createTileEnvironment();
 
-
-
         toad = new Toad(this);
         addGameObject(toad, 160, 2110);
-
-
-
 
         loadMonsters();
         loadCoins();
         loadBananas();
 
-//        for(int i = 0; i < 1; i++){
-//            monsters.add(new Monster(vis));
-//            Log.d("Monster", "Monster " + i + " gemaakt");
-//            addGameObject(monsters.get(i), 480 + (i * 10), 240 + (i * 10));
-//        }
-
-//		Monster engerd =   new Monster(vis);
-//		addGameObject(engerd, 480, 240);
         createViewPort(toad, 2f);
 
 
-        // Example of how to add a Dashboard to a game
-        scoreDisplay = new DashboardTextView(this);
-        scoreDisplay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
-        scoreDisplay.setTextColor(Color.BLACK);
-        addToDashboard(scoreDisplay);
+        if(!methodAlreadyCalled) {
+            // Example of how to add a Dashboard to a game
+            scoreDisplay = new DashboardTextView(this);
+            scoreDisplay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
+            scoreDisplay.setTextColor(Color.BLACK);
+            addToDashboard(scoreDisplay);
+            createDashboard();
+        }
 
-//        // Example of how to add an image to the dashboard.
-//
-//        DashboardImageView imageDisplay = new DashboardImageView(this, "bg");
-//        addToDashboard(imageDisplay);
 
-        createDashboard();
+        gameOverDisplay = new DashboardTextView(this);
+        gameOverDisplay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
+        gameOverDisplay.setTextColor(Color.BLACK);
+        addToDashboard(gameOverDisplay);
+
+        createGameOverDisplay();
+        methodAlreadyCalled = true;
     }
 
     /**
@@ -121,16 +123,57 @@ public class ToadParcour extends GameEngine {
     private void loadMonsters(){
 
         int[][] monsterCoord = new int[][]{
-                {500, 2100},
-                {600, 2128},
-                {650, 2128},
-                {700, 2128}
+                {800, 2128},
+                {950, 2128},
+                {1050, 2128},
+                {1500, 2128},
+                {1750, 2128},
+                {2400, 2128},
+                {3690, 2128},
+                {4150, 2128},
+                {4900, 2128},
+                {5500, 2128},
+                {6000, 2128},
+                {6500, 2128},
+                {6750, 2128},
+                {7200, 2128},
+                {7500, 2128},
+                {7550, 2128},
+                {8000, 2128},
+                {1023, 1936},
+                {1280, 1744},
+                {1200, 1360},
+                {1520, 1360},
+                {600, 1108},
+                {1300, 781},
+                {1550, 781},
+                {4800, 976},
+                {5100, 784},
+                {5577, 720},
+                {4850, 1616}
         };
-        monsters.add(new Cat(toad, Constants.CATRANGE, Constants.CATSPEED));
-        monsters.add(new Turtle(toad, Constants.TURTLERANGE, Constants.TURTLESPEED));
-        monsters.add(new Turtle(toad, Constants.TURTLERANGE, Constants.TURTLESPEED));
-        monsters.add(new Princess(toad, Constants.PRINCESSERANGE, Constants.PRINCESSESPEED));
+        Random r = new Random();
+        monsters = new ArrayList<>();
+        deleteAllGameObjectsOfType(Turtle.class);
+        deleteAllGameObjectsOfType(Cat.class);
+        deleteAllGameObjectsOfType(Princess.class);
         for(int i = 0; i < monsterCoord.length; i++){
+            int random = r.nextInt(3);
+            switch(random){
+                case 0:
+                    monsters.add(new Cat(toad, Constants.CATRANGE, Constants.CATSPEED));
+                    break;
+                case 1:
+                    monsters.add(new Turtle(toad, Constants.TURTLERANGE, Constants.TURTLESPEED));
+                    break;
+                case 2:
+                    monsters.add(new Princess(toad, Constants.PRINCESSERANGE, Constants.PRINCESSESPEED));
+                    break;
+            }
+        }
+        for(int i = 0; i < monsters.size(); i++){
+            Log.d("Monster", "height: " + monsters.get(i).getFrameHeight());
+
             addGameObject(monsters.get(i), monsterCoord[i][0], monsterCoord[i][1]);
             Log.d("Game", "Monster created!");
         }
@@ -141,13 +184,42 @@ public class ToadParcour extends GameEngine {
      * creates and loads all bananas
      */
     private void loadBananas() {
+        deleteAllGameObjectsOfType(Banana.class);
         int[][] bananaArray = new int[][]{
-                {500, 2100},
+                {900, 1936},
+                {1231, 1936},
+                {1500, 1744},
+                {710, 1552},
+                {800, 1168},
+                {900, 1168},
+                {1000, 1168},
+                {2665, 720},
+                {2413, 848},
+                {2151, 976},
+                {1893, 1104},
+                {1762, 1168},
+                {1642, 1168},
+                {3180, 848},
+                {3449, 976},
+                {3694, 1104},
+                {5777, 912},
+                {5200, 784},
+                {5300, 784},
+                {5400, 784},
+                {5500, 784},
+                {400, 2128},
                 {600, 2128},
-                {650, 2128},
-                {700, 2128}
+                {4244, 1936},
+                {4500, 1808},
+                {4600, 1808},
+                {4700, 1808},
+                {4800, 1616},
+                {5000, 1616},
+                {5450, 1744},
+                {5650, 1744},
+                {5850, 1744}
         };
-
+        bananas = new ArrayList<>();
         for(int i = 0; i < bananaArray.length; i++) {
             bananas.add(new Banana());
             addGameObject(bananas.get(i), bananaArray[i][0], bananaArray[i][1]);
@@ -159,13 +231,100 @@ public class ToadParcour extends GameEngine {
      * creates and loads all coins
      */
     private void loadCoins() {
+        deleteAllGameObjectsOfType(Coin.class);
         int[][] coinArray = new int[][]{
-                {250, 2100},
-                {344, 2128},
-                {392, 2128},
-                {440, 2128}
+                {3008, 1808},
+                {2947, 1872},
+                {2891, 1936},
+                {2827, 2000},
+                {2763, 2064},
+                {3155, 1808},
+                {3218, 1872},
+                {3287, 1936},
+                {3351, 2000},
+                {3428, 2064},
+                {800, 1936},
+                {1000, 1936},
+                {1250, 1744},
+                {1350, 1744},
+                {1150, 1744},
+                {110, 1552},
+                {210, 1552},
+                {310, 1552},
+                {410, 1552},
+                {510, 1552},
+                {610, 1552},
+                {810, 1552},
+                {910, 1552},
+                {1010, 1552},
+                {800, 976},
+                {900, 976},
+                {1000, 976},
+                {1100, 976},
+                {1200, 976},
+                {1650, 592},
+                {1750, 592},
+                {1850, 592},
+                {2520, 784},
+                {2266, 912},
+                {2024, 1040},
+                {1200, 1936},
+                {1450, 1744},
+                {1350, 1744},
+                {1320, 1360},
+                {1350, 1744},
+                {3305, 912},
+                {1350, 1744},
+                {3850, 1168},
+                {1350, 1744},
+                {4250, 1168},
+                {1350, 1744},
+                {4650, 1168},
+                {1350, 1744},
+                {5000, 976},
+                {1350, 1744},
+                {5200, 976},
+                {1350, 1744},
+                {5400, 976},
+                {1350, 1744},
+                {5600, 976},
+                {300, 2128},
+                {500, 2128},
+                {2266, 912},
+                {2024, 1040},
+                {4044, 1936},
+                {4144, 1936},
+                {4344, 1936},
+                {4700, 1616},
+                {4900, 1616},
+                {5050, 1616},
+                {5150, 1616},
+                {5250, 1616},
+                {5350, 1616},
+                {5450, 1616},
+                {5550, 1744},
+                {5750, 1744},
+                {5950, 1744},
+                {6089, 1653},
+                {6152, 1616},
+                {6216, 1552},
+                {6280, 1488},
+                {6244, 1424},
+                {6407, 1360},
+                {6504, 1296},
+                {6576, 1296},
+                {5971, 1296},
+                {6071, 1296},
+                {6171, 1296},
+                {6803, 1296},
+                {6880, 1369},
+                {6957, 1424},
+                {7034, 1488},
+                {7111, 1552},
+                {7200, 1552},
+                {7300, 1552}
         };
-
+        coins = new ArrayList<>();
         for(int i = 0; i < coinArray.length; i++) {
             coins.add(new Coin());
             addGameObject(coins.get(i), coinArray[i][0], coinArray[i][1]);
@@ -194,6 +353,40 @@ public class ToadParcour extends GameEngine {
         });
     }
 
+    private void createGameOverDisplay(){
+        this.gameOverDisplay.setWidgetHeight(120);
+        this.gameOverDisplay.setWidgetBackgroundColor(Color.TRANSPARENT);
+        this.gameOverDisplay.setTextColor(Color.WHITE);
+        this.gameOverDisplay.setWidgetX(-350);
+        this.gameOverDisplay.setWidgetY(350);
+        // If you want to modify the layout of a dashboard widget,
+        // you need to so so using its run method.
+        this.gameOverDisplay.run(new Runnable(){
+            public void run() {
+                gameOverDisplay.setPadding(10, 10, 10, 10);
+            }
+        });
+
+    }
+    private void runGameOverDisplay(){
+
+        String showText = "";
+        if(this.isPlayerOnEndPoint()){
+            this.gameOverDisplay.setWidgetBackgroundColor(Color.GREEN);
+
+            showText = "You have won the game!";
+        }else if(!isPlayerGameOver()){
+            this.gameOverDisplay.setWidgetBackgroundColor(Color.RED);
+            showText = "You lost!";
+        }else{
+            this.gameOverDisplay.setWidgetBackgroundColor(Color.RED);
+            showText = "You lost! You died";
+        }
+        this.gameOverDisplay.setTextString(showText);
+        toad.die();
+        Log.d("GameOver", "Shown text");
+    }
+
     /**
      * Create background with tiles
      */
@@ -207,7 +400,6 @@ public class ToadParcour extends GameEngine {
         GameTiles myTiles = new GameTiles(tileImagesNames, tilemap, 64);
         setTileMap(myTiles);
         Log.d("Game", "GameTiles created");
-
     }
 
     /**
@@ -218,16 +410,38 @@ public class ToadParcour extends GameEngine {
     public void update() {
         super.update();
         if(isGameTimeUp()){
+            runGameOverDisplay();
             Log.d("Time", "Game time is up");
+        }else if (isPlayerGameOver()){
+            runGameOverDisplay();
         }
 
-        Log.d("Pos", "X:" + getPlayer().getX() + "Y:" + getPlayer().getY());
+        Log.d("Pos", "X:" + getPlayer().getX() + " Y:" + getPlayer().getY());
         this.scoreDisplay.setTextString(
                 "Score: " + String.valueOf(this.toad.getScore()) +
                 " Coins: " + String.valueOf(this.toad.getCoins())+
                 " Bananas: " + String.valueOf(this.toad.getBananas()) +
-                " Time: " + (int)(((1000 * ToadParcour.difficulty) - (((System.currentTimeMillis()-startTime) / 1000)))/60)
+                " Time: " + getTime()
         );
+<<<<<<< HEAD
+=======
+
+
+        // reset game
+        if(OnScreenButtons.buttonY){
+            toad.die();
+            reset();
+        }
+
+    }
+
+    private int getTime() {
+        int time = (int)( ((60*ToadParcour.difficulty) - (System.currentTimeMillis()-startTime)/1000) );
+        if(time > 0){
+            return time;
+        }
+        return 0;
+>>>>>>> cac404615d164aef381521370b9b1d4d20bee464
     }
 
     /**
@@ -266,6 +480,10 @@ public class ToadParcour extends GameEngine {
         this.isPlayerOnEndPoint = isPlayerOnEndPoint;
     }
 
+    /**
+     * Checks if the game time is over or not
+     * @return boolean
+     */
     public boolean isGameTimeUp() {
         if( System.currentTimeMillis() - this.startTime >= (1000*60) * ToadParcour.difficulty) {
             return true;
@@ -274,8 +492,11 @@ public class ToadParcour extends GameEngine {
     }
 
     public void reset(){
-
-//        endGame();
+        if(!isPlayerGameOver()){
+            toad.die();
+        }
+        GameSound.stopSounds();
+        initialize();
     }
 
 }

@@ -6,6 +6,8 @@ import android.gameengine.icadroids.input.OnScreenButtons;
 import android.gameengine.icadroids.objects.GameObject;
 import android.gameengine.icadroids.objects.collisions.ICollision;
 import android.gameengine.icadroids.objects.collisions.TileCollision;
+import android.gameengine.icadroids.sound.GameSound;
+import android.gameengine.icadroids.sound.MusicPlayer;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -37,10 +39,24 @@ public class Toad extends GravatiyGameObject implements ICollision {
      */
     private int score = 0;
 
-    // ToDo: max wat doen deze variabelen? Javadoc toevoeg :)
+    /**
+     * Set the hight of Toad when he is jumping or falling
+     */
     private int start = 0;
+
+    /**
+     * Set the gravity number
+     */
     private double kracht = 6.5;
+
+    /**
+     * Register of there is a jump
+     */
     private boolean jump = false;
+
+    /**
+     * Register of there is a fall, after a jump
+     */
     private boolean fall = false;
 
     /**
@@ -59,6 +75,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
      */
     public Toad(ToadParcour mygame) {
         this.mygame = mygame;
+        this.toadDied = false;
         setSprite("toad", 4); // img of the character
         setFriction(1);
 
@@ -78,7 +95,6 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
     /**
      * update function
-     * ToDo: clean up this update function (MAX)
      */
     @Override
     public void update() {
@@ -102,9 +118,6 @@ public class Toad extends GravatiyGameObject implements ICollision {
         if(OnScreenButtons.buttonX){
             throwBanana();
         }
-        if(OnScreenButtons.buttonY){
-            mygame.reset();
-        }
 
         if (OnScreenButtons.buttonA && !jump && super.isTileOnderSpeler()) {
             jump = true;
@@ -112,10 +125,12 @@ public class Toad extends GravatiyGameObject implements ICollision {
             kracht = 6.5;
         }
 
+        /**
+         * Register a walk if the player is on a tile(left or right)
+         */
         if (OnScreenButtons.dPadRight) {
             if(super.isTileOnderSpeler()) {
                 setxSpeed(8);
-                //setySpeed(0);
                 setFrameNumber(0);
             }
             }
@@ -187,8 +202,10 @@ public class Toad extends GravatiyGameObject implements ICollision {
             }
         }
 
-
-
+        /**
+         * Function to let Toad fall on a natural way. De snelheid wordt steeds hoger. Wanneer
+         * Toad op een tile staat. Dan stop de fall en kan Toad weer opnieuw gaan springen.
+         */
         if (fall) {
             kracht = 0;
             if (getY() - start >= 10) {
@@ -220,7 +237,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
             for (GameObject g : gebotst) {
                 if(g instanceof Coin){
                     Coin coin = (Coin) g;
-                    this.setCoins((this.getCoins()+1));
+                    this.addCoin();
                     this.setScore(10);
                     coin.remove();
                 }
@@ -234,6 +251,9 @@ public class Toad extends GravatiyGameObject implements ICollision {
                     if(fall) {
                         addMonster(monster);
                         monster.die();
+                        setScore(10);
+                    } else {
+                        setMinScore(-10);
                     }
 
 
@@ -274,13 +294,16 @@ public class Toad extends GravatiyGameObject implements ICollision {
                 setSpeed(0);
                 break;
             }
-            if(tc.theTile.getTileType() == 1 || tc.theTile.getTileType() == 6){
-                this.setScore(-10);
-                this.mygame.setPlayerGameOver(true);
+            if((tc.theTile.getTileType() == 1) || (tc.theTile.getTileType() == 6)){
                 setySpeed(4);
+                setxSpeed(0);
                 Log.d("Player", "Player is standing on lava");
+                if(tc.theTile.getTileType() == 1) {
+                    this.mygame.setPlayerGameOver(true);
+                }
                 break;
             }
+
 
             if(tc.theTile.getTileType() == 3){
                 mygame.setPlayerOnEndPoint(true);
@@ -300,6 +323,13 @@ public class Toad extends GravatiyGameObject implements ICollision {
      */
     public int getCoins() {
         return coins;
+    }
+
+    /**
+     * adds one coin
+     */
+    private void addCoin(){
+        this.coins++;
     }
 
     /**
@@ -323,11 +353,23 @@ public class Toad extends GravatiyGameObject implements ICollision {
     }
 
     /**
-     * Let's you set the score, even below zero
+     * Let's you set the score
      * @param score
      */
     public void setScore(int score) {
-        this.score += (score * (int)ToadParcour.difficulty);
+        this.score += (score * (int) ToadParcour.difficulty);
+    }
+
+    /**
+     * Let's delete some score
+     * @param score
+     */
+    public void setMinScore(int score) {
+        if(this.score >= score) {
+            this.score += (score * (int) ToadParcour.difficulty);
+        } else if (this.score <= score) {
+            this.score = 0;
+        }
     }
 
     /**
@@ -344,7 +386,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
 
     /**
-     * Functiont to determine at wich direction toad is looking
+     * Function to determine at which direction toad is looking
      * @return direction
      */
     public double getLookDirection() {
@@ -360,5 +402,21 @@ public class Toad extends GravatiyGameObject implements ICollision {
             return prevDirection;
         }
 
+    }
+
+    private boolean toadDied = false;
+
+    /**
+     * Function that handles the death event of Toad
+     */
+    public void die(){
+        if(!toadDied) {
+            GameSound sound = new GameSound();
+            MusicPlayer.stop();
+            sound.addSound(1, "toaddeath");
+            sound.playSound(1, 1);
+            deleteThisGameObject();
+            toadDied = true;
+        }
     }
 }

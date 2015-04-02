@@ -26,8 +26,6 @@ application
 ADDED from AndroidManifest.xml:10:5
 	android:label
 		ADDED from AndroidManifest.xml:12:9
-	android:debuggable
-		ADDED from AndroidManifest.xml:12:42
 	android:icon
 		ADDED from AndroidManifest.xml:11:9
 activity#nl.han.oopd.toadparcour.ToadParcour
