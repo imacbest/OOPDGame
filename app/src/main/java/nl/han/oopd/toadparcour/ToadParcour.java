@@ -65,7 +65,9 @@ public class ToadParcour extends GameEngine {
      */
     private boolean playerGameOver = false;
 
-
+    /**
+     * Needed to restart the game so the dasboards wont be created again
+     */
     private boolean methodAlreadyCalled =false;
 
     /**
@@ -97,22 +99,23 @@ public class ToadParcour extends GameEngine {
         createViewPort(toad, 2f);
 
 
-        if(!methodAlreadyCalled) {
-            // Example of how to add a Dashboard to a game
+        if(!methodAlreadyCalled) { // make sure the dashboard is only created once
             scoreDisplay = new DashboardTextView(this);
             scoreDisplay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
             scoreDisplay.setTextColor(Color.BLACK);
             addToDashboard(scoreDisplay);
             createDashboard();
+
+            gameOverDisplay = new DashboardTextView(this);
+            gameOverDisplay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
+            gameOverDisplay.setTextColor(Color.BLACK);
+            addToDashboard(gameOverDisplay);
+
+            createGameOverDisplay();
         }
 
 
-        gameOverDisplay = new DashboardTextView(this);
-        gameOverDisplay.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 24);
-        gameOverDisplay.setTextColor(Color.BLACK);
-        addToDashboard(gameOverDisplay);
 
-        createGameOverDisplay();
         methodAlreadyCalled = true;
     }
 
