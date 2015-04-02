@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<merger version="3"><dataSet config="main"><source path="F:\documenten\OOPDGame\app\src\main\assets"/></dataSet><dataSet config="debug"><source path="F:\documenten\OOPDGame\app\src\debug\assets"/></dataSet></merger>
-=======
 <merger version="3"><dataSet config="main"><source path="C:\Users\Thomas\Dropbox\HAN\OOPD\OOPDGame\app\src\main\assets"/></dataSet><dataSet config="debug"><source path="C:\Users\Thomas\Dropbox\HAN\OOPD\OOPDGame\app\src\debug\assets"/></dataSet></merger>
->>>>>>> cac404615d164aef381521370b9b1d4d20bee464

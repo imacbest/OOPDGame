@@ -375,8 +375,8 @@ public class ToadParcour extends GameEngine {
 
             showText = "You have won the game!";
         }else if(!isPlayerGameOver()){
-            this.gameOverDisplay.setWidgetBackgroundColor(Color.RED);
-            showText = "You lost!";
+            this.gameOverDisplay.setWidgetBackgroundColor(Color.TRANSPARENT);
+            showText = "";
         }else{
             this.gameOverDisplay.setWidgetBackgroundColor(Color.RED);
             showText = "You lost! You died";
