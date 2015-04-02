@@ -70,11 +70,6 @@ public class Toad extends GravatiyGameObject implements ICollision {
     private long prevBanana = 0;
 
     /**
-     * variable that hold the information if toad is dead :(
-     */
-    private boolean toadDied = false;
-
-    /**
      * Main toad function
      * @param mygame reffrence to the ToadParcour instance
      */
@@ -122,6 +117,9 @@ public class Toad extends GravatiyGameObject implements ICollision {
         }
         if(OnScreenButtons.buttonX){
             throwBanana();
+        }
+        if(OnScreenButtons.buttonY){
+           this.die();
         }
 
         if (OnScreenButtons.buttonA && !jump && super.isTileOnderSpeler()) {
@@ -258,7 +256,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
                         monster.die();
                         setScore(10);
                     } else {
-                        setMinScore(-10);
+                        setMinScore(2);
                     }
 
 
@@ -370,8 +368,8 @@ public class Toad extends GravatiyGameObject implements ICollision {
      * @param score
      */
     public void setMinScore(int score) {
-        if(this.score >= score) {
-            this.score += (score * (int) ToadParcour.difficulty);
+        if(this.score >= (score * (int) ToadParcour.difficulty)) {
+            this.score -= (score * (int) ToadParcour.difficulty);
         } else if (this.score <= score) {
             this.score = 0;
         }
@@ -409,7 +407,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
     }
 
-
+    private boolean toadDied = false;
 
     /**
      * Function that handles the death event of Toad

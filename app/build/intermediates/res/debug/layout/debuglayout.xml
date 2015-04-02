@@ -73,8 +73,4 @@
         android:layout_height="wrap_content"
         android:text="Back" />
 
-<<<<<<< HEAD
-</LinearLayout><!-- From: file:/F:/documenten/OOPDGame/app/src/main/res/layout/debuglayout.xml -->
-=======
-</LinearLayout><!-- From: file:/C:/Users/Thomas/Dropbox/HAN/OOPD/OOPDGame/app/src/main/res/layout/debuglayout.xml -->
->>>>>>> cac404615d164aef381521370b9b1d4d20bee464
+</LinearLayout><!-- From: file:/Users/maxgroenendijk/OneDrive/HAN/OOPD/OOPDGame2/app/src/main/res/layout/debuglayout.xml -->

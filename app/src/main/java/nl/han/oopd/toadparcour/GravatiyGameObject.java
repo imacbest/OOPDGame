@@ -25,7 +25,7 @@ public class GravatiyGameObject extends MoveableGameObject {
      * @return boolean
      */
     public boolean isTileOnderSpeler(){
-        if (getTileOnPosition(getX(), getY()+getFrameHeight())!=null) {
+        if (getTileOnPosition(getX()-2, getY()+getFrameHeight())!=null) {
             return true;
         } else if (getTileOnPosition(getX()+getFrameWidth(), getY()+getFrameHeight())!=null) {
             return true;
