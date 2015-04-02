@@ -70,6 +70,11 @@ public class Toad extends GravatiyGameObject implements ICollision {
     private long prevBanana = 0;
 
     /**
+     * variable that hold the information if toad is dead :(
+     */
+    private boolean toadDied = false;
+
+    /**
      * Main toad function
      * @param mygame reffrence to the ToadParcour instance
      */
@@ -404,7 +409,7 @@ public class Toad extends GravatiyGameObject implements ICollision {
 
     }
 
-    private boolean toadDied = false;
+
 
     /**
      * Function that handles the death event of Toad

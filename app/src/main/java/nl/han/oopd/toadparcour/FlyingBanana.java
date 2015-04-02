@@ -13,8 +13,6 @@ import java.util.List;
  * @author Thomas Kool
  */
 public class FlyingBanana extends GravatiyGameObject implements ICollision {
-    // ToDo: test this class thoroughly
-
     /**
      * counters needed for the animation
      */
