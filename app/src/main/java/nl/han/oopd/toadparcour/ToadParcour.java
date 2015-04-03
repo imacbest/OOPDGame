@@ -79,6 +79,8 @@ public class ToadParcour extends GameEngine {
     protected void initialize() {
         MusicPlayer.play("toadparcourtune", true);
         startTime = System.currentTimeMillis();
+        playerGameOver = false;
+        isPlayerOnEndPoint = false;
 
         setMapDimensions(8705, 2240);
 
@@ -113,7 +115,8 @@ public class ToadParcour extends GameEngine {
 
             createGameOverDisplay();
         }
-
+        this.gameOverDisplay.setWidgetBackgroundColor(Color.TRANSPARENT);
+        this.gameOverDisplay.setTextColor(Color.TRANSPARENT);
 
 
         methodAlreadyCalled = true;
@@ -388,7 +391,6 @@ public class ToadParcour extends GameEngine {
     private void createGameOverDisplay(){
         this.gameOverDisplay.setWidgetHeight(120);
         this.gameOverDisplay.setWidgetBackgroundColor(Color.TRANSPARENT);
-        this.gameOverDisplay.setTextColor(Color.WHITE);
         this.gameOverDisplay.setWidgetX(-350);
         this.gameOverDisplay.setWidgetY(350);
         // If you want to modify the layout of a dashboard widget,
@@ -403,11 +405,11 @@ public class ToadParcour extends GameEngine {
     private void runGameOverDisplay(){
 
         String showText = "";
+
         if(this.isPlayerOnEndPoint()){
             this.gameOverDisplay.setWidgetBackgroundColor(Color.GREEN);
-
             showText = "You have won the game!";
-        }else if(!isPlayerGameOver()){
+        }else if(!isPlayerGameOver() && !isGameTimeUp()){
             this.gameOverDisplay.setWidgetBackgroundColor(Color.TRANSPARENT);
             showText = "";
         }else{
@@ -415,7 +417,8 @@ public class ToadParcour extends GameEngine {
             showText = "You lost! You died";
         }
         this.gameOverDisplay.setTextString(showText);
-        toad.die();
+        this.gameOverDisplay.setTextColor(Color.WHITE);
+//        toad.die();
         Log.d("GameOver", "Shown text");
     }
 
